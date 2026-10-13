@@ -37,6 +37,15 @@
 .nv__dd-item:hover { color: var(--t-nav-hover, #555); background: rgba(0,0,0,.04); text-decoration: none; }
 .nv__dd-item.active { background: var(--t-accent, #6c63ff); color: #fff; }
 .nv__divider { height: 1px; margin: .35rem 0; background: #e8e8e8; }
+/* sicurezza: una tendina non e' mai piu' alta dello schermo, se serve scorre */
+.nv__dd { max-height: calc(100vh - 5rem); overflow-y: auto; }
+/* TENDINA LARGA (classe messa da masthead.html quando ha piu' di 8 voci): 2 colonne, ancorata a destra
+   della barra (non sotto il padre), cosi' sta sempre dentro lo schermo e si legge tutta senza scorrere */
+.nv__inner { position: relative; }
+.nv__item--wide { position: static; }
+.nv__dd--wide { left: auto; right: 1rem; width: min(44rem, calc(100vw - 2rem)); columns: 2; column-gap: 0; }
+.nv__dd--wide .nv__dd-item { white-space: normal; break-inside: avoid; }
+.nv__dd--wide .nv__divider { column-span: all; }
 
 /* strumenti (lente + carrello) */
 .nv__tools { display: flex; align-items: center; gap: .35rem; padding-left: .35rem; }
@@ -64,6 +73,8 @@
   .nv__dd { position: static; min-width: 0; box-shadow: none; border: 0; border-left: 2px solid #e8e8e8; border-radius: 0; margin: 0 0 .35rem .5rem; padding: 0; }
   .nv__item:nth-last-child(-n+3) > .nv__dd { left: auto; right: auto; }
   .nv__dd-item { white-space: normal; padding: .55rem .9rem; }
+  .nv__dd--wide { width: auto; columns: 1; right: auto; max-height: none; }
+  .nv__item--wide { position: relative; }
   .nv__tools { padding: .25rem 0; }
 }
 @media (prefers-reduced-motion: reduce) { .nv__bar { transition: none; } }

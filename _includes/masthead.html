@@ -83,6 +83,9 @@
 
             {%- comment -%} 1) costruisco le voci della tendina (se ce ne sono) {%- endcomment -%}
             {%- assign kids = site.data.sottomenu[item.title] -%}
+            {%- comment -%} Tendina con piu' di 8 voci = LARGA su 2 colonne (niente scroll lungo). Soglia: cambia il numero 8. {%- endcomment -%}
+            {%- assign wide = false -%}
+            {%- if kids.size > 8 -%}{%- assign wide = true -%}{%- endif -%}
             {%- capture dd_html -%}
               {%- if kids -%}
                 {%- for k in kids -%}
@@ -107,10 +110,10 @@
 
             {%- if dd_html contains '<a' -%}
               <!-- VOCE CON TENDINA: il padre e' un pulsante, non un link -->
-              <li class="nv__item nv__item--dd">
+              <li class="nv__item nv__item--dd{% if wide %} nv__item--wide{% endif %}">
                 <button class="nv__link nv__link--dd" type="button" data-nv-dropdown-toggle
                         aria-haspopup="true" aria-expanded="false">{{ item.title }}</button>
-                <div class="nv__dd">{{ dd_html }}</div>
+                <div class="nv__dd{% if wide %} nv__dd--wide{% endif %}">{{ dd_html }}</div>
               </li>
             {%- else -%}
               <!-- VOCE SEMPLICE -->
