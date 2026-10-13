@@ -4,4 +4,11 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 
 ## Cose che funzionano
 - Skill Impeccable (design): installata a livello progetto con `npx --yes impeccable install --providers=claude --scope=project` dalla radice del progetto. I flag evitano le domande interattive. Dopo l'installazione, in Claude Code (anche nella scheda Code di Claude Desktop) lanciare `/impeccable init`.
-- Controllo design senza LLM: `npx impeccable detect --json _layouts _includes index.html` (trova per esempio testo con contrasto sotto 4.5:1).
+- Controllo design senza LLM: `npx impeccable detect --json _layouts _includes index.html` (trova per esempio testo con contrasto sotto 4.5:1).- La home e' fatta di blocchi in `_data/blocks_home.json` (campi id, nome, enabled, html), letti anche dall'admin: modificare solo il contenuto di `html`, mai la struttura. Fare prima un backup e verificare il JSON riletto dopo la scrittura.
+- Comandi PowerShell molto lunghi falliscono (limite della riga di comando): salvare lo script in un file .ps1 e lanciarlo con `powershell -NoProfile -ExecutionPolicy Bypass -File`.
+- Anteprima prima di pubblicare: creare un HTML statico con i blocchi e fare lo screenshot con `chrome.exe --headless=new --screenshot=... --window-size=1440,3000`. La larghezza minima di Chrome headless e' 500 px, sotto viene ritagliata.
+- Il motore binario di Impeccable non e' nel repo (e' in .gitignore): si riscarica al primo uso.
+
+## Da sistemare
+- I pulsanti "Richiedi preventivo" (blocchi pricing e cta) hanno href="#": manca un contatto reale (modulo, mail, telefono o WhatsApp).
+- I blocchi pricing e cta dicono quasi la stessa cosa uno dopo l'altro.
