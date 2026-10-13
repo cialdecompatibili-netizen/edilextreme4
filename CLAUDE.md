@@ -9,6 +9,8 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - Anteprima prima di pubblicare: creare un HTML statico con i blocchi e fare lo screenshot con `chrome.exe --headless=new --screenshot=... --window-size=1440,3000`. La larghezza minima di Chrome headless e' 500 px, sotto viene ritagliata.
 - Il motore binario di Impeccable non e' nel repo (e' in .gitignore): si riscarica al primo uso.
 
+- Il detector su cartella (`npx impeccable detect .`) NON legge i blocchi di `_data/blocks_home.json`: per controllare la home scansionare l'URL online (`npx impeccable detect --json <url>`) dopo il deploy. In PowerShell 5 il JSON restituito e' un array annidato: scorrerlo con due foreach.
+
 ## Da sistemare
 - I pulsanti "Richiedi preventivo" (blocchi pricing e cta) hanno href="#": manca un contatto reale (modulo, mail, telefono o WhatsApp).
 - I blocchi pricing e cta dicono quasi la stessa cosa uno dopo l'altro.
