@@ -58,6 +58,24 @@
       });
     });
 
+    // ---- VOCE ATTIVA (calcolata qui e non in masthead.html: il tema mette il masthead in cache) ----
+    // Regola: una voce e' attiva se l'indirizzo della pagina e' uguale al suo, oppure sta "dentro"
+    // (es. voce /blog/ attiva anche su /blog/2026/...). La Home e' attiva solo sulla home.
+    // Ignorati: link esterni, "#", ancore tipo /#pricing. Una voce di tendina e' attiva se lo e' un figlio.
+    function norm(p) { return p.replace(/index\.html$/, ''); }
+    var here = norm(location.pathname);
+    var home = norm(document.querySelector('.nv__brand').pathname);
+    function setActive(el) { if (el) el.classList.add('active'); }
+    Array.prototype.forEach.call(document.querySelectorAll('.nv__dd-item'), function (a) {
+      if (norm(a.pathname) === here) { setActive(a); setActive(a.closest('.nv__item')); }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.nv__item > a.nv__link'), function (a) {
+      var href = a.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#' || a.hash || a.host !== location.host) return;
+      var p = norm(a.pathname);
+      if (p === home ? here === home : here.indexOf(p) === 0) setActive(a.parentNode);
+    });
+
     // click fuori dal menu = chiudi tutto; click su un link = chiudi l'hamburger
     document.addEventListener('click', function (e) {
       var inside = e.target.closest && e.target.closest('#site-nav');
