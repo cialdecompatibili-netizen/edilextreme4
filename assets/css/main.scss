@@ -118,7 +118,7 @@ img { max-width: 100%; height: auto; }
    ============================================================ */
 a {
   text-decoration: none !important;
-  color: var(--t-link, #6c63ff);
+  color: var(--t-link, #3f6b00);
 }
 a:hover {
   text-decoration: underline !important;
@@ -278,3 +278,21 @@ a.page__taxonomy-item:hover {
 /* Nasconde copyright duplicato MM */
 .page__footer-copyright { display: none !important; }
 .page__footer-custom { color: #888; font-size: 0.65em; }
+
+/* ============================================================
+   REDESIGN STILE HOME (verde, Archivo Narrow, angoli netti)
+   ============================================================ */
+:root{--ex-ink:#15191d;--ex-line:#dfe3d6;--ex-warm:#f3f5ee;--ex-y:#95d600;--ex-gd:#3f6b00;--ex-deep:#1d3a06;--ex-d:'Archivo Narrow','Arial Narrow',sans-serif}
+::selection{background:var(--ex-y);color:var(--ex-ink)}
+h1,h2,h3,h4,.page__title,.archive__item-title{font-family:var(--ex-d);color:var(--ex-ink);font-weight:700;letter-spacing:-.01em}
+h1,.page__title{line-height:1;text-wrap:balance}
+a{color:var(--ex-gd)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ex-ink);outline-offset:3px}
+.btn,.sp-btn-cart,.btn-cart,.btn-checkout,.btn-conferma{border-radius:2px !important;font-family:var(--ex-d);letter-spacing:0}
+.btn--primary,.btn--primary:visited{background:var(--ex-y);color:var(--ex-ink)}
+.btn--primary:hover,.sp-btn-cart:hover,.btn-cart:hover,.btn-checkout:hover,.btn-conferma:hover{background:#a9e81c !important;color:var(--ex-ink) !important}
+.shop-cat-card,.prod-card,.cat-card,.art-row,.sp-opt,.sp-badge{border-radius:2px !important;border-color:var(--ex-line)}
+.masthead{border-bottom:1px solid var(--ex-line)}
+.page__footer{background:var(--ex-deep);color:#dfe8cc;border-top:0}
+.page__footer a,.page__footer-follow a{color:#c9e88a}
+.page__footer a:hover{color:#fff}

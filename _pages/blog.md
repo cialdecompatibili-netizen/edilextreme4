@@ -45,22 +45,22 @@ share: false
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #7c6ff7;
+  color: #3f6b00;
   background: transparent;
-  border: 1.5px solid #7c6ff7;
+  border: 1.5px solid #3f6b00;
   border-radius: 999px;
   padding: 3px 12px;
   text-decoration: none !important;
-  box-shadow: 0 2px 6px rgba(108, 99, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(149,214,0, 0.15);
   transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
   display: inline-block;
 }
 .blog-cat:hover {
-  background: linear-gradient(135deg, #7c6ff7 0%, #5a4fcf 100%);
-  color: #fff !important;
+  background: #95d600;
+  color: #15191d !important;
   text-decoration: none !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.40);
+  box-shadow: 0 4px 12px rgba(149,214,0, 0.40);
 }
 
 /* TITOLO — no sottolineatura di default, appare solo all'hover */

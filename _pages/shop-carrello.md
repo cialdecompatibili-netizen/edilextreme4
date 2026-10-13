@@ -12,7 +12,7 @@ author_profile: false
 .cart-empty{text-align:center;padding:4em 0;color:#bbb}
 .cart-empty .icon{font-size:4em;margin-bottom:.5em}
 .cart-empty p{font-size:1.1em}
-.cart-empty a{color:#6c63ff;text-decoration:none;font-weight:600}
+.cart-empty a{color:#3f6b00;text-decoration:none;font-weight:600}
 
 /* Lista prodotti */
 .cart-item{display:grid;grid-template-columns:80px 1fr auto;gap:1.2em;align-items:center;padding:1.2em 0;border-bottom:1px solid #eee}
@@ -21,7 +21,7 @@ author_profile: false
 .cart-item-info{}
 .cart-item-title{font-weight:700;font-size:15px;color:#1a1a2e;margin-bottom:.3em}
 .cart-item-meta{font-size:12px;color:#999}
-.cart-item-price{font-weight:700;color:#6c63ff;font-size:15px}
+.cart-item-price{font-weight:700;color:#3f6b00;font-size:15px}
 .cart-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6em}
 .cart-qty{display:flex;align-items:center;border:1.5px solid #ddd;border-radius:8px;overflow:hidden}
 .cart-qty button{width:30px;height:32px;border:none;background:#fff;font-size:1.1em;cursor:pointer;color:#333}
@@ -36,12 +36,12 @@ author_profile: false
 .cart-summary-row.total{font-size:1.2em;font-weight:800;color:#1a1a2e;border-top:2px solid #eee;padding-top:.7em;margin-top:.3em}
 .cart-coupon{display:flex;gap:.6em;margin:1em 0}
 .cart-coupon input{flex:1;padding:9px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;outline:none}
-.cart-coupon input:focus{border-color:#6c63ff}
+.cart-coupon input:focus{border-color:#95d600}
 .cart-coupon button{padding:9px 16px;background:#f0f0f0;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600;color:#555}
 .cart-coupon button:hover{background:#e8e8e8}
-.btn-checkout{width:100%;padding:14px;background:#6c63ff;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:1em;transition:background .2s;letter-spacing:.3px}
-.btn-checkout:hover{background:#5a52e0}
-.btn-continue{display:block;text-align:center;margin-top:.8em;font-size:13px;color:#6c63ff;text-decoration:none}
+.btn-checkout{width:100%;padding:14px;background:#95d600;color:#15191d;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:1em;transition:background .2s;letter-spacing:.3px}
+.btn-checkout:hover{background:#a9e81c}
+.btn-continue{display:block;text-align:center;margin-top:.8em;font-size:13px;color:#3f6b00;text-decoration:none}
 
 /* Checkout form */
 .checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9998;padding:1em}
@@ -51,14 +51,14 @@ author_profile: false
 .checkout-field{margin-bottom:1em}
 .checkout-field label{display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:.4em;text-transform:uppercase;letter-spacing:.3px}
 .checkout-field input{width:100%;padding:10px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none}
-.checkout-field input:focus{border-color:#6c63ff}
+.checkout-field input:focus{border-color:#95d600}
 .checkout-field .err{font-size:11px;color:#e74c3c;margin-top:.3em;display:none}
 .checkout-note{font-size:12px;color:#888;background:#f5f5f8;border-radius:8px;padding:.7em 1em;margin-bottom:1.2em}
 .checkout-actions{display:flex;gap:.7em;margin-top:1.3em}
 .checkout-actions button{flex:1;padding:12px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
 .checkout-actions .btn-annulla{background:#f0f0f0;color:#555}
-.checkout-actions .btn-conferma{background:#6c63ff;color:#fff}
-.checkout-actions .btn-conferma:hover{background:#5a52e0}
+.checkout-actions .btn-conferma{background:#95d600;color:#15191d}
+.checkout-actions .btn-conferma:hover{background:#a9e81c}
 
 /* Badge carrello nel menu */
 .cart-badge-count{background:#e74c3c;color:#fff;font-size:10px;font-weight:700;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;margin-left:3px;vertical-align:middle}

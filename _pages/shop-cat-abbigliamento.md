@@ -11,17 +11,17 @@ shop_category_name: Abbigliamento
 <style>
 .shop-list{display:flex;flex-direction:column;gap:1em;margin-top:1.5em}
 .prod-card{background:white;border:1.5px solid #eee;border-radius:12px;padding:1.2em 1.5em;color:#1a1a2e;display:flex;gap:1.2em;align-items:center}
-.prod-card:hover{border-color:#6c63ff;box-shadow:0 4px 16px rgba(108,99,255,.12)}
+.prod-card:hover{border-color:#95d600;box-shadow:0 4px 16px rgba(149,214,0,.12)}
 .prod-card img{width:90px;height:90px;object-fit:cover;border-radius:8px;flex-shrink:0}
 .prod-card-body{flex:1;min-width:0}
 .prod-card h3{font-size:1em;font-weight:700;margin:0 0 .3em}
 .prod-card .desc{font-size:13px;color:#666;margin-bottom:.5em;line-height:1.5}
-.prod-card .price{font-size:1.05em;font-weight:700;color:#6c63ff}
-.btn-cart{background:#6c63ff;color:white;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.btn-cart:hover{background:#574fd6}
+.prod-card .price{font-size:1.05em;font-weight:700;color:#3f6b00}
+.btn-cart{background:#95d600;color:#15191d;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.btn-cart:hover{background:#a9e81c}
 </style>
 
-<p style="margin-bottom:.5em"><a href="{{ '/shop/' | relative_url }}" style="color:#6c63ff;font-size:13px;text-decoration:none">← Torna allo Shop</a></p>
+<p style="margin-bottom:.5em"><a href="{{ '/shop/' | relative_url }}" style="color:#3f6b00;font-size:13px;text-decoration:none">← Torna allo Shop</a></p>
 <p style="color:#666;font-size:14px">Prodotti nella categoria <strong>{{ page.shop_category_name }}</strong></p>
 
 {% assign cat_products = site.products | where: "category", page.shop_category %}
