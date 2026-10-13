@@ -56,7 +56,7 @@
 =====================================================================================
 {%- endcomment -%}
 {%- assign nv_items = site.data.navigation.main -%}
-<header class="nv-header">
+<header class="nv-header"><!-- nv-debug page.url=[{{ page.url }}] path=[{{ page.path }}] -->
   <nav id="site-nav" class="nv" aria-label="Menu principale">
     <div class="nv__inner">
       <a class="nv__brand" href="{{ '/' | relative_url }}">{{ site.masthead_title | default: site.title }}</a>
