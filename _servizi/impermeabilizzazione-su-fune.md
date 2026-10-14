@@ -1,5 +1,7 @@
 ---
 layout: single
+ordine: 1
+in_home: true
 title: "Impermeabilizzazione su fune"
 date: 2026-09-17
 excerpt: "Interventi di impermeabilizzazione di terrazzi, balconi, tetti e cornicioni con tecnica su fune: niente ponteggi, tempi rapidi, risparmio concreto."

@@ -1,5 +1,7 @@
 ---
 layout: single
+ordine: 50
+in_home: false
 title: "Impermeabilizzazione tetti su fune: quando serve davvero"
 date: 2026-09-17
 excerpt: "Coperture difficili da raggiungere, ponteggi costosi o tempi stretti: ecco quando i lavori in fune sono la soluzione giusta per impermeabilizzare un tetto."
