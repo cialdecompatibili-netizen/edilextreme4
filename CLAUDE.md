@@ -14,3 +14,5 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 ## Da sistemare
 - I pulsanti "Richiedi preventivo" (blocchi pricing e cta) hanno href="#": manca un contatto reale (modulo, mail, telefono o WhatsApp).
 - I blocchi pricing e cta dicono quasi la stessa cosa uno dopo l'altro.
+
+- Menu: voci principali in _data/navigation.yml, tendine in _data/sottomenu.yml (chiave = title della voce). L'admin > Menu gestisce entrambi (bottone Sottomenu su ogni riga, un solo livello, separatori, riordino); salvando riscrive i due file e conserva il commento in testa a sottomenu.yml.

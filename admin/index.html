@@ -1091,32 +1091,75 @@ async function salvaCategorie(){
 
 // MENU
 // MENU
+let _subSha=null,_subHead='',_subExtra=[];
+function _unq(s){s=(s||'').trim();if(/^".*"$/.test(s))s=s.slice(1,-1);return s.replace(/\\(["\\])/g,'$1');}
+function _yq(s){return '"'+String(s).replace(/\\/g,'\\\\').replace(/"/g,'\\"')+'"';}
+function _ea(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 async function caricaMenu(){
   const res=await ghGet('_data/navigation.yml');
   if(!res.ok)return showMsg('msg-menu','❌ Errore caricamento.','err');
-  const d=await res.json();_menuSha=d.sha;
-  const yaml=dec(d.content);_menuVoci=[];
-  let titolo='';
-  for(const line of yaml.split('\n')){
-    const t=line.match(/^\s+-\s+title:\s+"?([^"]+)"?/);
-    const u=line.match(/^\s+url:\s+(.+)/);
-    if(t)titolo=t[1].trim();
-    if(u&&titolo){_menuVoci.push({title:titolo,url:u[1].trim()});titolo='';}
+  const d=await res.json();_menuSha=d.sha;_menuVoci=[];let titolo=null;
+  for(const line of dec(d.content).split('\n')){
+    const t=line.match(/^\s+-\s+title:\s*(.+)/);
+    const u=line.match(/^\s+url:\s*(.*)/);
+    if(t)titolo=_unq(t[1]);
+    if(u&&titolo!==null){_menuVoci.push({title:titolo,url:_unq(u[1]),figli:[],open:false});titolo=null;}
   }
+  // sottomenu: _data/sottomenu.yml (chiave = title della voce principale)
+  _subSha=null;_subHead='';_subExtra=[];const sub={};
+  const r2=await ghGet('_data/sottomenu.yml');
+  if(r2.ok){
+    const d2=await r2.json();_subSha=d2.sha;
+    let key=null,cur=null,inHead=true;const head=[];
+    for(const raw of dec(d2.content).split('\n')){
+      const line=raw.replace(/\r$/,'');
+      if(inHead){if(/^\s*(#|$)/.test(line)){head.push(line);continue;}inHead=false;}
+      if(/^\s*#/.test(line)||!line.trim())continue;
+      let m;
+      if((m=line.match(/^(\S.*?):\s*$/))){key=_unq(m[1]);sub[key]=[];cur=null;continue;}
+      if(key===null)continue;
+      if(/^\s+-\s+divider:\s*true/.test(line)){sub[key].push({divider:true});cur=null;}
+      else if((m=line.match(/^\s+-\s+title:\s*(.+)/))){cur={title:_unq(m[1]),url:''};sub[key].push(cur);}
+      else if((m=line.match(/^\s+url:\s*(.*)/))&&cur){cur.url=_unq(m[1]);}
+    }
+    _subHead=head.join('\n').replace(/\s+$/,'');
+  }
+  _menuVoci.forEach(v=>{if(sub[v.title])v.figli=sub[v.title];});
+  // chiavi senza voce principale: le conservo cosi' non si perdono al salvataggio
+  _subExtra=Object.keys(sub).filter(k=>!_menuVoci.some(v=>v.title===k)).map(k=>({k,items:sub[k]}));
   renderMenu();
 }
 function renderMenu(){
-  document.getElementById('lista-menu').innerHTML=_menuVoci.map((v,i)=>`
-    <div class="menu-row">
-      <div style="display:flex;flex-direction:column;gap:2px">
-        <button class="btn btn-secondary btn-sm" style="padding:1px 7px;font-size:11px;line-height:1" onclick="menuSu(${i})" ${i===0?'disabled':''}>▲</button>
-        <button class="btn btn-secondary btn-sm" style="padding:1px 7px;font-size:11px;line-height:1" onclick="menuGiu(${i})" ${i===_menuVoci.length-1?'disabled':''}>▼</button>
-      </div>
-      <input type="text" value="${v.title}" onchange="_menuVoci[${i}].title=this.value" placeholder="Nome">
-      <input type="text" value="${v.url}" onchange="_menuVoci[${i}].url=this.value" placeholder="/url/" style="font-size:12px;color:#555">
-      <button class="btn btn-danger btn-sm" onclick="_menuVoci.splice(${i},1);renderMenu()">🗑</button>
-    </div>`).join('');
+  const bs='padding:1px 7px;font-size:11px;line-height:1';
+  const ud=(su,giu,first,last)=>`<div style="display:flex;flex-direction:column;gap:2px"><button class="btn btn-secondary btn-sm" style="${bs}" onclick="${su}" ${first?'disabled':''}>▲</button><button class="btn btn-secondary btn-sm" style="${bs}" onclick="${giu}" ${last?'disabled':''}>▼</button></div>`;
+  document.getElementById('lista-menu').innerHTML=_menuVoci.map((v,i)=>{
+    const n=v.figli.filter(f=>!f.divider).length;
+    let sub='';
+    if(v.open){
+      sub=`<div style="margin:-4px 0 10px 30px;padding:10px;background:#fff;border:1px dashed #b7dfb7;border-radius:8px">
+        <div style="font-size:12px;color:#888;margin-bottom:8px">Sottomenu di <b>${_ea(v.title)}</b>. Con almeno una voce, <b>${_ea(v.title)}</b> apre solo la tendina e non è cliccabile: metti come primo figlio un "Tutti i …" per il link alla pagina.</div>`
+      +v.figli.map((f,j)=>{
+        const mv=ud(`figliSu(${i},${j})`,`figliGiu(${i},${j})`,j===0,j===v.figli.length-1);
+        const del=`<button class="btn btn-danger btn-sm" onclick="_menuVoci[${i}].figli.splice(${j},1);renderMenu()">🗑</button>`;
+        if(f.divider)return `<div class="menu-row" style="background:#fafafa">${mv}<div style="flex:1;text-align:center;color:#aaa;font-size:12px">── separatore ──</div>${del}</div>`;
+        return `<div class="menu-row">${mv}<input type="text" value="${_ea(f.title)}" onchange="_menuVoci[${i}].figli[${j}].title=this.value" placeholder="Nome"><input type="text" value="${_ea(f.url)}" onchange="_menuVoci[${i}].figli[${j}].url=this.value" placeholder="/url/" style="font-size:12px;color:#555">${del}</div>`;
+      }).join('')
+      +`<div style="display:flex;gap:8px;margin-top:6px"><button class="btn btn-secondary btn-sm" onclick="figlioAdd(${i})">+ Voce</button><button class="btn btn-secondary btn-sm" onclick="figlioDiv(${i})">+ Separatore</button></div></div>`;
+    }
+    return `<div class="menu-row">${ud(`menuSu(${i})`,`menuGiu(${i})`,i===0,i===_menuVoci.length-1)}
+      <input type="text" value="${_ea(v.title)}" onchange="_menuVoci[${i}].title=this.value;renderMenu()" placeholder="Nome">
+      <input type="text" value="${_ea(v.url)}" onchange="_menuVoci[${i}].url=this.value" placeholder="/url/" style="font-size:12px;color:#555">
+      <button class="btn btn-secondary btn-sm" style="white-space:nowrap" onclick="menuToggle(${i})">${v.open?'▾':'▸'} Sottomenu${n?' ('+n+')':''}</button>
+      <button class="btn btn-danger btn-sm" onclick="menuDel(${i})">🗑</button>
+    </div>`+sub;
+  }).join('');
 }
+function menuToggle(i){_menuVoci[i].open=!_menuVoci[i].open;renderMenu();}
+function menuDel(i){if(_menuVoci[i].figli.length&&!confirm('Elimino anche il suo sottomenu?'))return;_menuVoci.splice(i,1);renderMenu();}
+function figlioAdd(i){_menuVoci[i].figli.push({title:'Nuova voce',url:'/'});renderMenu();}
+function figlioDiv(i){_menuVoci[i].figli.push({divider:true});renderMenu();}
+function figliSu(i,j){if(j===0)return;const a=_menuVoci[i].figli;a.splice(j-1,0,a.splice(j,1)[0]);renderMenu();}
+function figliGiu(i,j){const a=_menuVoci[i].figli;if(j>=a.length-1)return;a.splice(j+1,0,a.splice(j,1)[0]);renderMenu();}
 function menuSu(i){if(i===0)return;var t=_menuVoci.splice(i,1)[0];_menuVoci.splice(i-1,0,t);renderMenu();}
 function menuGiu(i){if(i===_menuVoci.length-1)return;var t=_menuVoci.splice(i,1)[0];_menuVoci.splice(i+1,0,t);renderMenu();}
 function catSu(i){if(i===0)return;var t=_categorie.splice(i,1)[0];_categorie.splice(i-1,0,t);renderCategorie();renderSelect();}
@@ -1125,18 +1168,41 @@ function aggiungiVoce(){
   const t=document.getElementById('menu-nome').value.trim();
   const u=document.getElementById('menu-url').value.trim();
   if(!t||!u)return;
-  _menuVoci.push({title:t,url:u});
+  _menuVoci.push({title:t,url:u,figli:[],open:false});
   document.getElementById('menu-nome').value='';document.getElementById('menu-url').value='';
   renderMenu();
+}
+function _subBlock(k,items){
+  const out=[];
+  items.forEach(f=>{
+    if(f.divider){if(out.length&&!out[out.length-1].divider)out.push({divider:true});}
+    else if((f.title||'').trim())out.push({title:f.title.trim(),url:(f.url||'').trim()});
+  });
+  while(out.length&&out[out.length-1].divider)out.pop();
+  if(!out.length)return '';
+  const key=/^[\w .,'()!&\/-]+$/.test(k)&&!/^\s|\s$/.test(k)?k:_yq(k);
+  return key+':\n'+out.map(f=>f.divider?'  - divider: true\n':`  - title: ${_yq(f.title)}\n    url: ${_yq(f.url)}\n`).join('')+'\n';
 }
 async function salvaMenu(){
   if(!tok())return showMsg('msg-menu','⚠️ Token mancante.','err');
   showMsg('msg-menu','⏳ Salvataggio...','');
-  let yaml='main:\n';_menuVoci.forEach(v=>{yaml+=`  - title: "${v.title}"\n    url: ${v.url}\n`;});
+  let yaml='main:\n';_menuVoci.forEach(v=>{yaml+=`  - title: ${_yq(v.title)}\n    url: ${v.url}\n`;});
   const res=await ghPut('_data/navigation.yml','Aggiorna menu',yaml,_menuSha);
   const j=await res.json();
-  if(res.ok){_menuSha=j.content.sha;showMsg('msg-menu','✅ Menu salvato! Live in ~60s.','ok');}
-  else showMsg('msg-menu','❌ '+j.message,'err');
+  if(!res.ok)return showMsg('msg-menu','❌ '+j.message,'err');
+  _menuSha=j.content.sha;
+  // sottomenu
+  const done={};let body='';
+  _menuVoci.forEach(v=>{if(done[v.title])return;done[v.title]=1;body+=_subBlock(v.title,v.figli);});
+  _subExtra.forEach(e=>{if(!done[e.k]){done[e.k]=1;body+=_subBlock(e.k,e.items);}});
+  if(body||_subSha){
+    const head=_subHead||'# SOTTOMENU DEL SITO (_data/sottomenu.yml) - gestito da admin > Menu.\n# La CHIAVE deve essere identica al "title" della voce in navigation.yml.\n# Un solo livello. "- divider: true" = riga di separazione.';
+    const r2=await ghPut('_data/sottomenu.yml','Aggiorna sottomenu',head+'\n\n'+body.replace(/\n+$/,'\n'),_subSha);
+    const j2=await r2.json();
+    if(!r2.ok)return showMsg('msg-menu','❌ Menu salvato ma sottomenu no: '+j2.message,'err');
+    _subSha=j2.content.sha;
+  }
+  showMsg('msg-menu','✅ Menu e sottomenu salvati! Live in ~60s.','ok');
 }
 
 // EDITOR PAGINE

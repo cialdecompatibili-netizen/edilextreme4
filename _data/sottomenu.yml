@@ -1,8 +1,8 @@
 # =====================================================================================
 # SOTTOMENU DEL SITO  (_data/sottomenu.yml)
 # Le voci PRINCIPALI stanno in _data/navigation.yml (le modifica anche admin > Menu).
-# Qui stanno solo le TENDINE. L'admin NON legge ne' riscrive questo file: i sottomenu
-# non si perdono quando salvi il menu dall'admin.
+# Qui stanno solo le TENDINE. Ora le gestisce anche admin > Menu (bottone "Sottomenu"
+# su ogni voce): salvando dall'admin questo file viene riscritto, questo commento resta.
 #
 # COME SI USA
 #   1) la CHIAVE (prima dei due punti) deve essere IDENTICA al "title" della voce in
