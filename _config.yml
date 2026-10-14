@@ -53,6 +53,12 @@ collections:
   products:
     output: true
     permalink: /shop/:name/
+  servizi:
+    output: true
+    permalink: /servizi/:name/
+  progetti:
+    output: true
+    permalink: /progetti/:name/
 
 include:
   - _pages
@@ -99,6 +105,18 @@ defaults:
     values:
       layout: product
       classes: wide
+  - scope:
+      path: ""
+      type: servizi
+    values:
+      layout: single
+      author_profile: false
+  - scope:
+      path: ""
+      type: progetti
+    values:
+      layout: single
+      author_profile: false
 
 category_archive:
   type: liquid
