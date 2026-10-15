@@ -310,6 +310,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
    Gli !important servono per battere le regole float di "YOU MAY ALSO ENJOY" piu' sopra.
    ============================================================ */
 .page__related .grid__wrapper{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;margin:0 !important}
+/* FIX POSIZIONE (15/10/2026): il tema mette .page__related in float senza larghezza sotto i 64em, quindi
+   il blocco si restringeva e le card finivano tutte a sinistra. Qui: niente float, larghezza piena
+   del contenitore, cosi' le card seguono sempre la larghezza dell'articolo (blog e servizi). */
+.page__related{float:none !important;width:100% !important;box-sizing:border-box;padding-inline:0 !important}
 .page__related .grid__wrapper::after{display:none !important}
 .page__related .grid__item{float:none !important;width:auto !important;margin:0 !important;padding:0 !important}
 .page__related .archive__item{height:100%;display:flex;flex-direction:column;padding:1.1rem 1.25rem 1.25rem;background:#fff;border:1px solid var(--ex-line);border-radius:2px;transition:border-color .15s}
