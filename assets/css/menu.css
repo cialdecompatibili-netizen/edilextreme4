@@ -78,3 +78,22 @@
   .nv__tools { padding: .25rem 0; }
 }
 @media (prefers-reduced-motion: reduce) { .nv__bar { transition: none; } }
+
+/* =====================================================================
+   COLORI MENU - palette verde acido (15/10/2026)
+   PERCHE': le voci-link visitate diventavano celestine (a:visited del tema Minimal Mistakes ha
+   specificita' 0,1,1 e batteva .nv__link 0,1,0), mentre i <button> restavano neri.
+   QUI: "a.nv__link" + :visited/:focus hanno specificita' piu' alta, quindi link e bottoni
+   sono SEMPRE dello stesso colore (--t-nav-text). Hover/attivo = verde scuro (--t-accent) con
+   barretta verde acido #95d600 sotto (testo acido su bianco non si leggerebbe).
+   I colori base si cambiano in _data/tema.json, l'acido e' scritto solo qui.
+   ===================================================================== */
+a.nv__brand, a.nv__brand:visited, a.nv__link, a.nv__link:visited, a.nv__link:focus, a.nv__link:active { color: var(--t-nav-text, #15191d); }
+a.nv__brand:hover, a.nv__link:hover, a.nv__link:focus-visible, .nv__link:hover, .nv__link:focus-visible { color: var(--t-accent, #3f6b00); }
+.nv__link { box-shadow: inset 0 -3px 0 transparent; transition: box-shadow .15s, color .15s; }
+.nv__link:hover, .nv__link:focus-visible, .nv__item.show > .nv__link { box-shadow: inset 0 -3px 0 #95d600; }
+.nv__item.active > a.nv__link, .nv__item.active > a.nv__link:visited, .nv__item.active > .nv__link { color: var(--t-accent, #3f6b00); font-weight: 700; box-shadow: inset 0 -3px 0 #95d600; }
+a.nv__dd-item, a.nv__dd-item:visited, a.nv__dd-item:focus { color: var(--t-nav-text, #15191d); }
+a.nv__dd-item:hover, a.nv__dd-item:focus-visible { color: var(--t-accent, #3f6b00); background: #f3f5ee; box-shadow: inset 3px 0 0 #95d600; }
+a.nv__dd-item.active, a.nv__dd-item.active:visited, a.nv__dd-item.active:hover { background: #95d600; color: #15191d; box-shadow: none; }
+@media (max-width: 767.98px) { .nv__link, .nv__item.active > .nv__link { box-shadow: none; } .nv__item.active > .nv__link { border-left: 3px solid #95d600; padding-left: .6rem; } }

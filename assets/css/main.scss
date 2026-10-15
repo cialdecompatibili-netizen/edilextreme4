@@ -287,6 +287,11 @@ a.page__taxonomy-item:hover {
 h1,h2,h3,h4,.page__title,.archive__item-title{font-family:var(--ex-d);color:var(--ex-ink);font-weight:700;letter-spacing:-.01em}
 h1,.page__title{line-height:1;text-wrap:balance}
 a{color:var(--ex-gd)}
+/* LINK VISITATI (15/10/2026): il tema Minimal Mistakes colora a:visited di celestino scuro
+   (specificita' maggiore di qualsiasi .classe): ecco perche' alcune voci di menu/link erano celestine.
+   Qui i visitati restano uguali ai non visitati (verde del tema). Eccezioni: footer su fondo scuro. */
+a:visited{color:var(--t-link,#3f6b00)}
+.page__footer a:visited,.page__footer-follow a:visited{color:#c9e88a}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ex-ink);outline-offset:3px}
 .btn,.sp-btn-cart,.btn-cart,.btn-checkout,.btn-conferma{border-radius:2px !important;font-family:var(--ex-d);letter-spacing:0}
 .btn--primary,.btn--primary:visited{background:var(--ex-y);color:var(--ex-ink)}
