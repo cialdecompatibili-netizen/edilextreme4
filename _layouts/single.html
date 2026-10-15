@@ -83,4 +83,9 @@ layout: default
     {% assign related_limited = site.posts | limit: 3 %}
     {% include page__related.html locale=locale posts=related_limited %}
   {% endif %}
+
+  {%- comment -%} Pagine servizio: in fondo le card degli altri servizi (stessa grafica delle card del blog) {%- endcomment -%}
+  {% if page.collection == "servizi" %}
+    {% include servizi-correlati.html %}
+  {% endif %}
 </div>
