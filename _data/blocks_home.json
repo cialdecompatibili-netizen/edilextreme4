@@ -27,12 +27,12 @@
         "id":  "pricing",
         "nome":  "Preventivo",
         "enabled":  true,
-        "html":  "\u003csection class=\"ex-band\" id=\"pricing\" aria-labelledby=\"pricing-title\"\u003e\u003cdiv class=\"ex-band-in\"\u003e\u003cdiv\u003e\u003ch2 class=\"ex-h2\" id=\"pricing-title\"\u003ePreventivo gratuito, sopralluogo incluso\u003c/h2\u003e\u003cp\u003eUn solo modulo, rispondiamo entro 24 ore, festivi esclusi.\u003c/p\u003e\u003c/div\u003e\u003ca class=\"ex-btn ex-btn-k\" href=\"#\" onclick=\"trackClick(\u0027edilextreme\u0027,\u0027preventivo\u0027,\u0027Preventivo\u0027,0)\"\u003eRichiedi preventivo\u003c/a\u003e\u003c/div\u003e\u003c/section\u003e"
+        "html":  "\u003csection class=\"ex-band\" id=\"pricing\" aria-labelledby=\"pricing-title\"\u003e\u003cdiv class=\"ex-band-in\"\u003e\u003cdiv\u003e\u003ch2 class=\"ex-h2\" id=\"pricing-title\"\u003ePreventivo gratuito, sopralluogo incluso\u003c/h2\u003e\u003cp\u003eUn solo modulo, rispondiamo entro 24 ore, festivi esclusi.\u003c/p\u003e\u003c/div\u003e\u003ca class=\"ex-btn ex-btn-k\" href=\"__BASEURL__/contatti/\" onclick=\"trackClick(\u0027edilextreme\u0027,\u0027preventivo\u0027,\u0027Preventivo\u0027,0)\"\u003eRichiedi preventivo\u003c/a\u003e\u003c/div\u003e\u003c/section\u003e"
     },
     {
         "id":  "cta",
         "nome":  "CTA finale",
         "enabled":  false,
-        "html":  "\u003csection class=\"ex-end\" aria-labelledby=\"cta-title\"\u003e\u003cdiv class=\"ex-band-in\"\u003e\u003cdiv\u003e\u003ch2 class=\"ex-h2\" id=\"cta-title\"\u003ePronto a iniziare?\u003c/h2\u003e\u003cp\u003eCompila il modulo: rispondiamo entro 24 ore, festivi esclusi.\u003c/p\u003e\u003c/div\u003e\u003ca class=\"ex-btn ex-btn-y\" href=\"#\"\u003eRichiedi preventivo\u003c/a\u003e\u003c/div\u003e\u003c/section\u003e"
+        "html":  "\u003csection class=\"ex-end\" aria-labelledby=\"cta-title\"\u003e\u003cdiv class=\"ex-band-in\"\u003e\u003cdiv\u003e\u003ch2 class=\"ex-h2\" id=\"cta-title\"\u003ePronto a iniziare?\u003c/h2\u003e\u003cp\u003eCompila il modulo: rispondiamo entro 24 ore, festivi esclusi.\u003c/p\u003e\u003c/div\u003e\u003ca class=\"ex-btn ex-btn-y\" href=\"__BASEURL__/contatti/\"\u003eRichiedi preventivo\u003c/a\u003e\u003c/div\u003e\u003c/section\u003e"
     }
 ]
