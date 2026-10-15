@@ -34,7 +34,10 @@ permalink: /contatti/
 .cf-form .cf-btn:disabled{opacity:.65;cursor:progress;transform:none;box-shadow:none}
 @media (prefers-reduced-motion:reduce){.cf-form .cf-btn{transition:none}.cf-form .cf-btn:hover{transform:none}}
 .cf-nota{margin:.8rem 0 0;font-size:.85rem;opacity:.7;text-align:center}
-#cf-esito:not(:empty){margin:1rem 0 0;padding:.75rem 1rem;border-radius:8px;background:rgba(0,0,0,.05);font-weight:600;text-align:center}
+/* Esito = notifica fissa in alto (sempre visibile), sparisce da sola dopo 4 secondi (vedi mostra() nello script) */
+#cf-esito{position:fixed;top:1rem;left:50%;transform:translate(-50%,-150%);z-index:99999;max-width:min(92vw,480px);padding:.9rem 1.3rem;border-radius:10px;background:var(--t-accent,#3f6b00);color:#fff;font-weight:600;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease}
+#cf-esito.cf-visibile{transform:translate(-50%,0);opacity:1}
+#cf-esito.cf-errore{background:#b00020}
 </style>
 
 <div class="cf-wrap">
@@ -68,7 +71,14 @@ permalink: /contatti/
   var btn = document.getElementById('cf-btn');
   var ENDPOINT = "https://contatti-form.evabomboniere.workers.dev";
   var t0 = Date.now();
-  function mostra(m, ok) { esito.textContent = m; esito.style.color = ok ? '' : '#b00020'; }
+  /* notifica in alto: "Invio in corso" resta finche' non c'e' l'esito; successo ed errori spariscono dopo 4 secondi (cambia 4000) */
+  var tm = null;
+  function mostra(m, ok, fisso) {
+    esito.textContent = m;
+    esito.className = 'cf-visibile' + (ok ? '' : ' cf-errore');
+    clearTimeout(tm);
+    if (!fisso) tm = setTimeout(function () { esito.className = ''; }, 4000);
+  }
 
   /* ALTCHA: sfida firmata dal worker; il browser trova il numero n tale che SHA-256(salt+n) = challenge */
   var pre = null, preT = 0;
@@ -96,7 +106,7 @@ permalink: /contatti/
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     if (!form.checkValidity()) { mostra('Compila nome, email e messaggio.', false); return; }
-    btn.disabled = true; mostra('Invio in corso...', true);
+    btn.disabled = true; mostra('Invio in corso...', true, true);
     token().then(function (tk) {
       if (!tk) { mostra('Verifica non riuscita. Riprova.', false); btn.disabled = false; return; }
       var d = new URLSearchParams(new FormData(form));
