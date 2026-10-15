@@ -209,7 +209,9 @@ a.page__taxonomy-item:hover {
     box-sizing: border-box !important;
   }
   #main:has(> .sidebar) > .page__related {
-    grid-column: 1 / -1 !important;
+    /* 15/10/2026: le card correlate stanno SOLO nella colonna dell'articolo (1), non sotto la sidebar (1 / -1),
+       cosi' hanno la stessa larghezza del testo e dei bottoni Precedente/Successivo. */
+    grid-column: 1 !important;
     grid-row: 2 !important;
     width: 100% !important;
     clear: none !important;
@@ -309,14 +311,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
    Per cambiare larghezza minima delle card: 15rem in grid-template-columns.
    Gli !important servono per battere le regole float di "YOU MAY ALSO ENJOY" piu' sopra.
    ============================================================ */
-.page__related .grid__wrapper{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;margin:0 !important}
+/* RAGGIO ANGOLI (15/10/2026): un solo valore per card e bottoni Precedente/Successivo. Per angoli piu' o meno tondi cambiare qui. */
+.page__related,.pagination{--ex-raggio:12px}
+/* LARGHEZZA CARD (15/10/2026): ogni card e' larga quanto un bottone Precedente/Successivo = meta' della
+   larghezza dell'articolo (2 per riga da tablet in su, 1 per riga su telefono). Lo spazio tra le card (.75rem)
+   e' lo stesso dei bottoni, cosi' le larghezze coincidono. Per averne 3 per riga: repeat(3,1fr). */
+.page__related .grid__wrapper{display:grid !important;grid-template-columns:1fr;gap:.75rem;margin:0 !important}
+@media (min-width:37.5em){.page__related .grid__wrapper{grid-template-columns:repeat(2,1fr)}}
 /* FIX POSIZIONE (15/10/2026): il tema mette .page__related in float senza larghezza sotto i 64em, quindi
    il blocco si restringeva e le card finivano tutte a sinistra. Qui: niente float, larghezza piena
    del contenitore, cosi' le card seguono sempre la larghezza dell'articolo (blog e servizi). */
 .page__related{float:none !important;width:100% !important;box-sizing:border-box;padding-inline:0 !important}
 .page__related .grid__wrapper::after{display:none !important}
 .page__related .grid__item{float:none !important;width:auto !important;margin:0 !important;padding:0 !important}
-.page__related .archive__item{height:100%;display:flex;flex-direction:column;padding:1.1rem 1.25rem 1.25rem;background:#fff;border:1px solid var(--ex-line);border-radius:2px;transition:border-color .15s}
+/* Card moderna: angoli arrotondati; overflow:hidden fa seguire l'immagine in alto alla curva degli angoli */
+.page__related .archive__item{height:100%;display:flex;flex-direction:column;overflow:hidden;padding:1.1rem 1.25rem 1.25rem;background:#fff;border:1px solid var(--ex-line);border-radius:var(--ex-raggio);transition:border-color .15s}
 .page__related .archive__item:hover{border-color:var(--ex-gd)}
 .page__related .archive__item-teaser{margin:-1.1rem -1.25rem .9rem}
 .page__related .archive__item-teaser img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
@@ -325,3 +334,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .page__related .archive__item-title a:hover{color:var(--ex-gd);text-decoration:underline}
 .page__related .archive__item-excerpt{margin:0 !important;font-size:.92rem;line-height:1.6;color:#555}
 @media (prefers-reduced-motion:reduce){.page__related .archive__item{transition:none}}
+
+/* BOTTONI Precedente/Successivo (15/10/2026): moderni, angoli arrotondati, due bottoni separati da un piccolo
+   spazio (.75rem, come le card). Larghezza: meta' ciascuno. Con un solo bottone (prima/ultima pagina) resta
+   largo meta' e "Successivo" va a destra. Selettori con > per non toccare la paginazione degli elenchi (ul). */
+.pagination:has(> .pagination--pager){display:flex !important;gap:.75rem;width:100%;margin-top:1.5rem}
+.pagination > .pagination--pager{float:none !important;flex:0 0 calc(50% - .375rem);width:auto !important;margin:0 !important;box-sizing:border-box;padding:.7em 1em;border:1px solid var(--ex-line) !important;border-radius:var(--ex-raggio) !important;background:#fff;color:var(--ex-ink);font-weight:600;text-align:center;transition:border-color .15s,color .15s}
+.pagination > .pagination--pager:last-child{margin-left:auto !important}
+.pagination > .pagination--pager:hover{border-color:var(--ex-gd) !important;color:var(--ex-gd);background:#fff}
