@@ -160,29 +160,18 @@ body { font-size: calc(1rem * var(--t-font-scale)); }
 }
 .page__meta-category a:hover { text-decoration: underline; }
 
-/* INDICE stile Wikipedia (riattivato 17/09/2026) — solo H2, soglia >=3, generato via JS */
-.article-auto-toc {
-  background: #f8f9fa;
-  border: 1px solid #e2e2e2;
-  border-radius: 8px;
-  padding: 18px 24px;
-  margin: 0 0 24px 0;
-  display: table;
-}
-.article-auto-toc__title {
-  font-weight: 700;
-  font-size: 15px;
-  margin: 0 0 8px 0;
-}
-.article-auto-toc ol {
-  margin: 0;
-  padding-left: 20px;
-}
-.article-auto-toc li { margin: 4px 0; font-size: 14px; }
-.article-auto-toc ol ol { list-style-type: lower-roman; margin: 4px 0 4px 0; padding-left: 18px; }
-.article-auto-toc ol ol li { font-size: 13px; }
-.article-auto-toc a { color: var(--t-link, #3f6b00); text-decoration: none; }
-.article-auto-toc a:hover { text-decoration: underline; }
+/* INDICE: box con filo sottile e etichetta "Indice" a pillola (stile webtomars, 15/10/2026).
+   Il markup lo genera il JS "INDICE AUTOMATICO" qui sotto (nav.article-auto-toc > p.article-auto-toc__title + ol).
+   Vale per blog e servizi (stesso .page__content). Per cambiare colori/bordo toccare solo questo blocco. */
+.article-auto-toc{position:relative;display:table;max-width:100%;min-width:180px;margin:1.8rem 0 2.2rem;padding:1.3rem 1.4rem 1rem;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.article-auto-toc__title{position:absolute;top:0;left:1.2rem;transform:translateY(-50%);margin:0;padding:.1rem .8rem;border:1px solid rgba(0,0,0,.12);border-radius:999px;background:#fff;font-size:.85rem;font-weight:700;letter-spacing:.04em;line-height:1.4}
+.article-auto-toc ol{list-style:none;margin:0;padding:0}
+.article-auto-toc li{margin:0;font-size:inherit}
+.article-auto-toc a{display:block;padding:.2rem 0;line-height:1.35;font-weight:600;color:var(--t-link,#3f6b00);text-decoration:none}
+.article-auto-toc a:hover{text-decoration:underline}
+.article-auto-toc ol ol{margin:.05rem 0 .3rem .9rem;padding-left:.7rem}
+.article-auto-toc ol ol a{font-weight:400}
+@media (max-width:576px){.article-auto-toc{padding:1.2rem 1rem .9rem}}
 </style>
 
 {% if site.integrations.ga4.enabled and site.integrations.ga4.id != "" %}
