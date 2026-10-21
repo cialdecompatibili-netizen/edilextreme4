@@ -25,7 +25,7 @@ classes: wide
 .cat-empty{color:#bbb;font-size:14px;padding:2em 0;text-align:center}
 </style>
 
-<a class="cat-back" href="{{ '/categories/' | relative_url }}">← Tutte le categorie</a>
+<a class="cat-back" href="{{ '/categorie/' | relative_url }}">← Tutte le categorie</a>
 <div id="cat-container"><div class="cat-empty">⏳ Caricamento...</div></div>
 
 <script>
