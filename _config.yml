@@ -5,7 +5,7 @@ url: "https://edilextreme.com"
 email: ""
 description: >-
   Lavori in quota su doppia fune: grondaie, facciate, tetti, messa in sicurezza. Operatori certificati, sopralluogo e preventivo gratuiti.
-footer_text: "&copy; 2026 EdilExtreme"
+footer_text: "&copy; 2026 EdilExtreme - Design, Development & Digital Marketing by <a href=\"https://webtomars.com\" target=\"_blank\" rel=\"noopener\">webtomars.com</a>"
 twitter_username: username
 github_username: username
 minimal_mistakes_skin: default
@@ -88,9 +88,6 @@ footer:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
