@@ -15,6 +15,7 @@ search: true
 author:
   name: "Andrew"
   avatar: "/assets/images/bio-photo.jpg"
+  home: "/chi-sono/"
   bio: "Ciao, sono Andrew fondatore di EdilExtreme, sono disponibile per qualsiasi richiesta. Grazie per l'attenzione."
   links:
     - label: "Website"
