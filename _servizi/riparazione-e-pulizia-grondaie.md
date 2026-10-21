@@ -4,6 +4,7 @@ title: "Riparazione e pulizia grondaie"
 description: "Pulizia e riparazione di grondaie e pluviali dall'alto, senza ponteggi."
 seo_title: "Pulizia e riparazione grondaie su fune, senza ponteggio"
 seo_description: "Grondaie e pluviali intasati o rotti? Li puliamo e riparamo dall'alto su fune, senza ponteggio. Sopralluogo gratuito e preventivo chiaro. Scrivici su WhatsApp."
+foto: "pulizia-gronda-su-fune-scala"
 ordine: 2
 in_home: true
 categories:
