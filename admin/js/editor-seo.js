@@ -172,6 +172,7 @@ function renderFoto(k,f){
 const attr=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 
 // Libreria media in finestra, come WordPress: griglia, ricerca, carica, dettagli con testo alternativo.
+window.openMediaLib=openMedia;
 function openMedia(o){
   const L=window.FOTOLIB; if(!L){alert('La libreria foto non è disponibile.');return;}
   const ov=document.createElement('div'); ov.className='mx-ov';
