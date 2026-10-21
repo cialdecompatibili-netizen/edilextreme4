@@ -73,7 +73,7 @@ function vista(k,titolo){
   showMsg(`c-${k}-msg`,'',''); window.scrollTo({top:0,behavior:'smooth'});
 }
 window.collNuovo=function(k){
-  ['title','ord','desc','seot','seod','faq','corpo'].forEach(f=>$(`c-${k}-${f}`).value=''); $(`c-${k}-home`).value='true';
+  ['title','ord','desc','seot','seod','faq','corpo'].forEach(f=>$(`c-${k}-${f}`).value=''); $(`c-${k}-home`).value='true'; if($(`c-${k}-fkw`))$(`c-${k}-fkw`).value='';
   st[k].path=null; vista(k,'Nuovo '+C[k].nome.toLowerCase());
 };
 window.collModifica=async function(k,path){
@@ -84,7 +84,7 @@ window.collModifica=async function(k,path){
   $(`c-${k}-title`).value=m.title||''; $(`c-${k}-ord`).value=m[C[k].ord]||'';
   $(`c-${k}-home`).value=m.in_home==='false'?'false':'true';
   $(`c-${k}-desc`).value=m.description||m.excerpt||''; $(`c-${k}-corpo`).value=fm[2].trim();
-  $(`c-${k}-seot`).value=m.seo_title||''; $(`c-${k}-seod`).value=m.seo_description||'';
+  $(`c-${k}-seot`).value=m.seo_title||''; $(`c-${k}-seod`).value=m.seo_description||''; if($(`c-${k}-fkw`))$(`c-${k}-fkw`).value=m.focus_keyword||'';
   {const fq=[],re=/^[ \t]+-[ \t]+q:[ \t]*"(.*)"[ \t]*\n[ \t]+a:[ \t]*"(.*)"[ \t]*$/gm;let z;while((z=re.exec(fm[1]))){fq.push(z[1].replace(/\\"/g,'"')+' | '+z[2].replace(/\\"/g,'"'));} $(`c-${k}-faq`).value=fq.join('\n');}
   st[k].path=path; vista(k,'Modifica '+C[k].nome.toLowerCase());
 };
@@ -93,17 +93,17 @@ window.collSalva=async function(k){
   if(!tok())return showMsg(msg,'⚠️ Token mancante.','err');
   const titolo=$(`c-${k}-title`).value.trim(); if(!titolo)return showMsg(msg,'⚠️ Titolo obbligatorio.','err');
   const ord=$(`c-${k}-ord`).value.trim()||'99', home=$(`c-${k}-home`).value, desc=$(`c-${k}-desc`).value.trim(), corpo=$(`c-${k}-corpo`).value.trim();
-  const seot=$(`c-${k}-seot`).value.trim(), seod=$(`c-${k}-seod`).value.trim(), faqT=$(`c-${k}-faq`).value;
+  const seot=$(`c-${k}-seot`).value.trim(), seod=$(`c-${k}-seod`).value.trim(), faqT=$(`c-${k}-faq`).value, fkw=($(`c-${k}-fkw`)?$(`c-${k}-fkw`).value.trim():'');
   const path=st[k].path||`${c.dir}/${slug(titolo)}.md`;
   let sha,extra=[];
   if(st[k].path){ // modifica: tengo gli altri campi del frontmatter (date, categories, ecc.)
     const r=await ghGet(path); if(r.ok){const d=await r.json(); sha=d.sha;
       const fm=dec(d.content).replace(/\r\n/g,'\n').match(/^---\n([\s\S]+?)\n---/);
-      if(fm){let inFaq=false;extra=fm[1].split('\n').filter(l=>{if(/^faq:/.test(l)){inFaq=true;return false;} if(inFaq&&/^\s/.test(l))return false; inFaq=false; return !/^(title|description|seo_title|seo_description|ordine|importance|in_home|layout):/.test(l);});}}
+      if(fm){let inFaq=false;extra=fm[1].split('\n').filter(l=>{if(/^faq:/.test(l)){inFaq=true;return false;} if(inFaq&&/^\s/.test(l))return false; inFaq=false; return !/^(title|description|seo_title|seo_description|focus_keyword|ordine|importance|in_home|layout):/.test(l);});}}
   }
   if(!st[k].path&&k==='servizi')extra=['categories:','  - servizi'];
   const faqL=faqT.split('\n').map(s=>s.trim()).filter(s=>s.includes('|')).map(s=>{const i=s.indexOf('|');return `  - q: "${esc(s.slice(0,i).trim())}"\n    a: "${esc(s.slice(i+1).trim())}"`;});
-  const md=['---','layout: single',`title: "${esc(titolo)}"`,`description: "${esc(desc)}"`,...(seot?[`seo_title: "${esc(seot)}"`]:[]),...(seod?[`seo_description: "${esc(seod)}"`]:[]),`${c.ord}: ${ord}`,`in_home: ${home}`,...(faqL.length?['faq:',...faqL]:[]),...extra,'---',corpo,''].join('\n');
+  const md=['---','layout: single',`title: "${esc(titolo)}"`,`description: "${esc(desc)}"`,...(seot?[`seo_title: "${esc(seot)}"`]:[]),...(seod?[`seo_description: "${esc(seod)}"`]:[]),...(fkw?[`focus_keyword: "${esc(fkw)}"`]:[]),`${c.ord}: ${ord}`,`in_home: ${home}`,...(faqL.length?['faq:',...faqL]:[]),...extra,'---',corpo,''].join('\n');
   showMsg(msg,'⏳ Salvataggio...','');
   const res=await ghPut(path,`${c.nome}: ${titolo}`,md,sha);
   if(res.ok){showMsg(msg,`✅ ${c.nome} salvato!`,'ok');startDeployPolling();st[k].path=path;}
