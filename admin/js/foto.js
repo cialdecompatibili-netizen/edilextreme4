@@ -115,5 +115,21 @@ window.fotoCaricaTutte=async function(){
   if(r.ok){showMsg('msg-foto',`${tot} foto caricate: appaiono in Galleria e Servizi dopo il deploy.`,'ok');queue=[];$('foto-coda').innerHTML='';$('foto-file').value='';startDeployPolling();disegna();}
   else showMsg('msg-foto','Errore: '+(await r.json()).message,'err');
 };
+const prevMap={};
+window.FOTOLIB={
+  prev:prevMap,
+  async lista(){ if(!tok())return []; await leggi(); return items.map(x=>Object.assign({},x)); },
+  url:n=>base+DIR+'/'+n+'.jpg',
+  liquid:n=>"{{ '/"+DIR+"/"+n+".jpg' | relative_url }}",
+  async carica(file){
+    if(!tok())throw new Error('Token mancante');
+    const r=await ridimensiona(file), n0=slug(file.name)||'foto';
+    await leggi(); const usati=new Set(items.map(x=>x.f)); let nome=n0,k=2; while(usati.has(nome))nome=n0+'-'+k++;
+    const p=await putRaw(DIR+'/'+nome+'.jpg','Foto: '+nome,r.b64); if(!p.ok)throw new Error((await p.json()).message);
+    const t=indovina(n0), it={f:nome,cap:n0.replace(/-/g,' ').replace(/^./,c=>c.toUpperCase()),t:t.length?t:['team'],w:r.w,h:r.h};
+    items.push(it); const w=await scrivi('Foto: aggiunta '+nome); if(!w.ok)throw new Error((await w.json()).message);
+    prevMap[nome]=r.prev; startDeployPolling(); return Object.assign({},it);
+  }
+};
 init();
 })();

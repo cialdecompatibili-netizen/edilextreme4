@@ -14,11 +14,12 @@ function plain(md){
 }
 function blocks(md){return String(md||'').replace(/\r\n/g,'\n').split(/\n{2,}/).map(b=>b.trim()).filter(Boolean);}
 
-function md2html(src){
+function md2html(src,base){
+  const fix=u=>{u=u.replace(/\{\{\s*['"]?([^'"|}]*?)['"]?\s*\|\s*relative_url\s*\}\}/,'$1').replace(/\{\{[\s\S]*?\}\}/g,'');return(/^\//.test(u)&&base)?base.replace(/\/$/,'')+u:u;};
   const inline=t=>{
     t=esc(t).replace(/\{\{\s*&#39;|\{\{\s*'/g,"{{ '");
-    t=t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img alt="$1" src="$2">');
-    t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,a,u)=>'<a href="'+u.replace(/\{\{\s*['"]?([^'"|}]*)['"]?\s*\|\s*relative_url\s*\}\}/,'$1').replace(/\{\{[\s\S]*?\}\}/g,'#')+'">'+a+'</a>');
+    t=t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,(m,a,u)=>'<img alt="'+a.replace(/"/g,'&quot;')+'" src="'+fix(u)+'">');
+    t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,a,u)=>'<a href="'+fix(u)+'">'+a+'</a>');
     return t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<em>$2</em>').replace(/\{\{[\s\S]*?\}\}/g,'');
   };
   return blocks(src).map(b=>{
@@ -89,6 +90,7 @@ window.SEOED=api;
 
 // ---------- interfaccia ----------
 const $=id=>document.getElementById(id);
+const BASE=location.origin+location.pathname.replace(/\/admin\/?.*$/,'/');
 const css=`
 .sx-ed{margin-top:4px}
 .sx-tabs{display:flex;gap:2px;margin-bottom:-1px;position:relative;z-index:1}
@@ -116,6 +118,43 @@ const css=`
 .sx-li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:9px;border-radius:50%}
 .sx-meter{height:4px;background:#f0f0f1;margin-top:5px;border-radius:2px;overflow:hidden}.sx-meter i{display:block;height:100%;width:0;background:#d63638;transition:width .2s,background .2s}
 .sx-cnt{font-size:12px;color:#646970;margin-top:3px}
+.sx-st{margin-left:auto;font-size:12px;color:#646970;align-self:center;padding-right:4px}
+.sx-fp{display:flex;gap:14px;align-items:flex-start}
+.sx-fpi{width:140px;aspect-ratio:4/3;background:#f6f7f7;border:1px dashed #c3c4c7;display:flex;align-items:center;justify-content:center;color:#646970;font-size:12px;overflow:hidden;flex:none}
+.sx-fpi img{width:100%;height:100%;object-fit:cover;display:block}
+.sx-fpa .hint{margin-top:8px;max-width:340px}
+.mx-ov{position:fixed;inset:0;background:rgba(29,35,39,.7);z-index:100000;display:flex;align-items:center;justify-content:center;padding:3vh 3vw}
+.mx-ov.drag{outline:3px dashed #72aee6;outline-offset:-12px}
+.mx{background:#fff;width:min(1100px,100%);height:min(720px,100%);display:flex;flex-direction:column;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.mx-h{display:flex;justify-content:space-between;align-items:center;padding:0 16px;height:50px;border-bottom:1px solid #dcdcde;font-size:18px}
+.mx-x{border:none;background:none;font-size:26px;line-height:1;cursor:pointer;color:#646970;padding:4px 8px}.mx-x:hover{color:#d63638}
+.mx-t{display:flex;gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid #f0f0f1}
+.mx-q{max-width:280px}
+.mx-up{background:#2271b1;color:#fff;padding:6px 14px;border-radius:3px;cursor:pointer;font-size:13px;white-space:nowrap}.mx-up:hover{background:#135e96}
+.mx-s{font-size:12px;color:#646970}
+.mx-b{flex:1;display:flex;min-height:0}
+.mx-g{flex:1;overflow:auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;align-content:start}
+.mx-i{padding:0;border:none;background:#f0f0f1;aspect-ratio:1;cursor:pointer;position:relative;outline-offset:0}
+.mx-i img{width:100%;height:100%;object-fit:cover;display:block}
+.mx-i:hover{outline:2px solid #72aee6}.mx-i.on{outline:3px solid #2271b1;box-shadow:inset 0 0 0 2px #fff}
+.mx-d{width:290px;border-left:1px solid #dcdcde;padding:16px;overflow:auto;background:#f6f7f7;flex:none}
+.mx-pv{width:100%;display:block;margin-bottom:10px;background:#fff}
+.mx-n{font-weight:600;word-break:break-all}.mx-m{color:#646970;font-size:12px;margin-bottom:14px}
+.mx-l{margin-top:4px}.mx-d .mx-ok{margin-top:16px;width:100%;justify-content:center}
+.mx-e{grid-column:1/-1;color:#646970;font-size:13px;padding:8px 0}
+@media (max-width:782px){.mx-b{flex-direction:column}.mx-d{width:100%;border-left:none;border-top:1px solid #dcdcde;max-height:45%}.mx-q{max-width:none;flex:1}}
+.wp-list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #c3c4c7;margin-top:10px}
+.wp-list th{text-align:left;font-weight:600;padding:8px 10px;border-bottom:1px solid #c3c4c7;font-size:13px}
+.wp-list td{padding:10px;border-bottom:1px solid #f0f0f1;vertical-align:top}
+.wp-list tr:nth-child(even) td{background:#f6f7f7}.wp-list tr:hover td{background:#f0f6fc}
+.wp-th{width:80px}.wp-th div{width:64px;height:48px;background:#f0f0f1;overflow:hidden}.wp-th img{width:100%;height:100%;object-fit:cover;display:block}
+.wp-t{font-weight:600;font-size:14px;color:#2271b1;text-decoration:none;cursor:pointer}.wp-t:hover{color:#135e96}
+.wp-ra{font-size:12px;margin-top:3px;color:#a7aaad;visibility:hidden}
+.wp-list tr:hover .wp-ra{visibility:visible}
+@media (hover:none){.wp-ra{visibility:visible}}
+.wp-ra a{color:#2271b1;text-decoration:none;cursor:pointer}.wp-ra a:hover{text-decoration:underline}.wp-ra a.del{color:#b32d2e}
+.wp-search{max-width:280px;margin:0 0 4px}
+.wp-n{color:#646970;font-size:13px;white-space:nowrap}
 `;
 const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
@@ -125,24 +164,99 @@ function lineP(ta,p){const s=ta.selectionStart,e=ta.selectionEnd,v=ta.value,a=v.
   const txt=v.slice(a,b).split('\n').map((l,i)=>p==='1.'?(i+1)+'. '+l:p+l).join('\n');ta.setRangeText(txt,a,b,'end');ta.focus();}
 function ins(ta,t){ta.setRangeText(t,ta.selectionStart,ta.selectionEnd,'end');ta.focus();}
 
+function renderFoto(k,f){
+  const el=$('sx-fpi-'+k); if(!el)return; const L=window.FOTOLIB;
+  el.innerHTML=(f&&L)?'<img alt="" src="'+L.url(f)+'" data-p="'+((L.prev&&L.prev[f])||'')+'" onerror="this.onerror=null;if(this.dataset.p)this.src=this.dataset.p">':'<span>Nessuna foto</span>';
+  const r=$('sx-fpr-'+k); if(r)r.style.display=f?'':'none';
+}
+const attr=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+// Libreria media in finestra, come WordPress: griglia, ricerca, carica, dettagli con testo alternativo.
+function openMedia(o){
+  const L=window.FOTOLIB; if(!L){alert('La libreria foto non è disponibile.');return;}
+  const ov=document.createElement('div'); ov.className='mx-ov';
+  ov.innerHTML='<div class="mx" role="dialog" aria-label="Libreria media"><div class="mx-h"><b>'+(o.mode==='pick'?'Scegli la foto principale':'Inserisci una foto')+'</b><button type="button" class="mx-x" aria-label="Chiudi">×</button></div>'
+   +'<div class="mx-t"><input type="search" class="mx-q" placeholder="Cerca per nome o descrizione"><label class="mx-up">Carica foto<input type="file" accept="image/*" multiple hidden></label><span class="mx-s"></span></div>'
+   +'<div class="mx-b"><div class="mx-g"><p class="mx-e">Caricamento della libreria…</p></div><aside class="mx-d"><p class="mx-e">Scegli una foto per vedere i dettagli. Puoi anche trascinare qui nuove foto.</p></aside></div></div>';
+  document.body.appendChild(ov);
+  let items=[],sel=null,q='';
+  const g=ov.querySelector('.mx-g'),d=ov.querySelector('.mx-d'),s=ov.querySelector('.mx-s');
+  const close=()=>{document.removeEventListener('keydown',esc2);ov.remove();};
+  const esc2=e=>{if(e.key==='Escape')close();};
+  document.addEventListener('keydown',esc2);
+  ov.addEventListener('mousedown',e=>{if(e.target===ov)close();});
+  ov.querySelector('.mx-x').onclick=close;
+  const use=()=>{if(!sel)return;const alt=(d.querySelector('.mx-alt')||{}).value||sel.cap||'';close();o.onSelect(sel,alt);};
+  function draw(){
+    const t=norm(q), list=items.filter(x=>!t||norm(x.f+' '+x.cap).includes(t));
+    g.innerHTML=list.length?list.map(x=>'<button type="button" class="mx-i'+(sel&&sel.f===x.f?' on':'')+'" data-f="'+attr(x.f)+'" title="'+attr(x.cap)+'"><img loading="lazy" alt="" src="'+L.url(x.f)+'" data-p="'+attr(L.prev[x.f]||'')+'" onerror="this.onerror=null;if(this.dataset.p)this.src=this.dataset.p"></button>').join(''):'<p class="mx-e">'+(items.length?'Nessuna foto con questa ricerca.':'Nessuna foto ancora: usa “Carica foto”.')+'</p>';
+    if(!sel){d.innerHTML='<p class="mx-e">Scegli una foto per vedere i dettagli. Puoi anche trascinare qui nuove foto.</p>';return;}
+    d.innerHTML='<img class="mx-pv" alt="" src="'+L.url(sel.f)+'" data-p="'+attr(L.prev[sel.f]||'')+'" onerror="this.onerror=null;if(this.dataset.p)this.src=this.dataset.p"><div class="mx-n">'+esc(sel.f)+'.jpg</div><div class="mx-m">'+(sel.w||'')+' × '+(sel.h||'')+' px</div>'
+      +'<label class="mx-l">Testo alternativo</label><input type="text" class="mx-alt" value="'+attr(sel.cap)+'"><div class="hint">Descrive la foto a Google e a chi non la vede.</div>'
+      +'<button type="button" class="btn btn-primary mx-ok">'+(o.mode==='pick'?'Usa come foto principale':'Inserisci nel testo')+'</button>';
+    d.querySelector('.mx-ok').onclick=use;
+  }
+  g.onclick=e=>{const b=e.target.closest('.mx-i');if(!b)return;sel=items.find(x=>x.f===b.dataset.f)||null;draw();};
+  g.ondblclick=e=>{if(e.target.closest('.mx-i'))use();};
+  ov.querySelector('.mx-q').oninput=e=>{q=e.target.value;draw();};
+  async function up(files){
+    const fs=[...files].filter(f=>/^image\//.test(f.type));
+    for(let i=0;i<fs.length;i++){
+      s.textContent='Carico '+(i+1)+' di '+fs.length+'…';
+      try{const it=await L.carica(fs[i]);items.unshift(it);sel=it;draw();}
+      catch(e){s.textContent='Errore: '+e.message;return;}
+    }
+    s.textContent=fs.length?'Fatto. Le foto sono online dopo il deploy.':'';
+  }
+  ov.querySelector('input[type=file]').onchange=e=>{up(e.target.files);e.target.value='';};
+  ov.addEventListener('dragover',e=>{e.preventDefault();ov.classList.add('drag');});
+  ov.addEventListener('dragleave',e=>{if(e.target===ov)ov.classList.remove('drag');});
+  ov.addEventListener('drop',e=>{e.preventDefault();ov.classList.remove('drag');up(e.dataTransfer.files);});
+  L.lista().then(l=>{items=l.reverse();draw();}).catch(()=>{g.innerHTML='<p class="mx-e">Non riesco a leggere la libreria. Controlla il token.</p>';});
+}
+
 function mount(k){
   const ta=$('c-'+k+'-corpo'); if(!ta||ta.dataset.sx)return; ta.dataset.sx=1;
   const field=ta.closest('.field'); const lab=field.querySelector('label'); if(lab)lab.textContent='Testo';
   const box=document.createElement('div');box.className='sx-ed';
   box.innerHTML='<div class="sx-tabs"><button type="button" class="on" data-t="w">Scrittura</button><button type="button" data-t="p">Anteprima</button></div>'
-   +'<div class="sx-bar2"><button type="button" data-a="b" title="Grassetto"><b>B</b></button><button type="button" data-a="i" title="Corsivo"><i>i</i></button><button type="button" data-a="h2">Titolo</button><button type="button" data-a="h3">Sottotitolo</button><button type="button" data-a="ul">Elenco</button><button type="button" data-a="ol">Elenco numerato</button><button type="button" data-a="a">Link</button><button type="button" data-a="img">Foto</button><button type="button" data-a="cta">Call to action</button></div>';
+   +'<div class="sx-bar2"><button type="button" data-a="b" title="Grassetto"><b>B</b></button><button type="button" data-a="i" title="Corsivo"><i>i</i></button><button type="button" data-a="h2">Titolo</button><button type="button" data-a="h3">Sottotitolo</button><button type="button" data-a="ul">Elenco</button><button type="button" data-a="ol">Elenco numerato</button><button type="button" data-a="a">Link</button><button type="button" data-a="img">Aggiungi foto</button><button type="button" data-a="cta">Call to action</button><span class="sx-st"></span></div>';
   ta.parentNode.insertBefore(box,ta);box.appendChild(ta);
   const pv=document.createElement('div');pv.className='sx-prev';box.appendChild(pv);
   const bar=box.querySelector('.sx-bar2');
   box.querySelector('.sx-tabs').onclick=e=>{const t=e.target.dataset.t;if(!t)return;
     box.querySelectorAll('.sx-tabs button').forEach(b=>b.classList.toggle('on',b===e.target));
-    ta.style.display=t==='w'?'':'none';bar.style.display=t==='w'?'':'none';pv.style.display=t==='p'?'block':'none';if(t==='p')pv.innerHTML=md2html(ta.value);};
+    ta.style.display=t==='w'?'':'none';bar.style.display=t==='w'?'':'none';pv.style.display=t==='p'?'block':'none';if(t==='p')pv.innerHTML=md2html(ta.value,BASE);};
   bar.onclick=e=>{const a=e.target.closest('button');if(!a)return;const x=a.dataset.a;
     if(x==='b')wrap(ta,'**','**','testo');else if(x==='i')wrap(ta,'*','*','testo');
     else if(x==='h2')lineP(ta,'## ');else if(x==='h3')lineP(ta,'### ');else if(x==='ul')lineP(ta,'- ');else if(x==='ol')lineP(ta,'1.');
     else if(x==='a'){const u=prompt('Indirizzo del link (es. /servizi/pulizia-vetri/ o https://...)');if(u)wrap(ta,'[','](' +u+ ')','testo del link');}
-    else if(x==='img'){const u=prompt('Indirizzo della foto (es. /assets/foto/nome.jpg)');if(u){const al=prompt('Descrivi la foto in poche parole (serve a Google)')||'';ins(ta,'\n\n!['+al+']('+u+')\n\n');}}
+    else if(x==='img')openMedia({mode:'insert',onSelect:(it,alt)=>ins(ta,'\n\n!['+alt+']('+window.FOTOLIB.liquid(it.f)+')\n\n')});
     else if(x==='cta')ins(ta,'\n\n{% include servizio-cta.html tipo="mini" %}\n\n');};
+
+  // foto principale (e etichette per i progetti)
+  const grid=$('c-'+k+'-ord')&&$('c-'+k+'-ord').closest('.grid2');
+  if(grid){
+    const fp=document.createElement('div');
+    fp.innerHTML='<div class="field"><label>Foto principale</label><div class="sx-fp"><div class="sx-fpi" id="sx-fpi-'+k+'"><span>Nessuna foto</span></div><div class="sx-fpa"><button type="button" class="btn btn-secondary btn-sm" id="sx-fpb-'+k+'">Scegli foto</button> <button type="button" class="btn btn-secondary btn-sm" id="sx-fpr-'+k+'" style="display:none">Rimuovi</button><div class="hint">Compare nell’elenco. Se non la scegli, il sito ne sceglie una in automatico.</div></div></div><input type="hidden" id="c-'+k+'-foto"></div>'
+      +(k==='progetti'?'<div class="field"><label>Etichette</label><input type="text" id="c-'+k+'-chips" placeholder="Grondaie, In giornata, Senza ponteggio"><div class="hint">Separate da virgola: compaiono come pillole nell’elenco.</div></div>':'');
+    grid.insertAdjacentElement('afterend',fp);
+    $('sx-fpb-'+k).onclick=()=>openMedia({mode:'pick',onSelect:it=>{$('c-'+k+'-foto').value=it.f;renderFoto(k,it.f);}});
+    $('sx-fpr-'+k).onclick=()=>{$('c-'+k+'-foto').value='';renderFoto(k,'');};
+  }
+  // incolla o trascina una foto nel testo: viene caricata e inserita da sola
+  const st2=bar.querySelector('.sx-st');
+  const upIns=async files=>{
+    const fs=[...files].filter(f=>/^image\//.test(f.type));
+    for(let i=0;i<fs.length;i++){
+      st2.textContent='Carico la foto '+(i+1)+' di '+fs.length+'…';
+      try{const it=await window.FOTOLIB.carica(fs[i]);ins(ta,'\n\n!['+it.cap+']('+window.FOTOLIB.liquid(it.f)+')\n\n');st2.textContent='Foto inserita.';}
+      catch(e){st2.textContent='Errore: '+e.message;}
+    }
+  };
+  ta.addEventListener('paste',e=>{const fs=[...((e.clipboardData&&e.clipboardData.files)||[])].filter(f=>/^image\//.test(f.type));if(fs.length){e.preventDefault();upIns(fs);}});
+  ta.addEventListener('dragover',e=>{if(e.dataTransfer&&[...e.dataTransfer.types].includes('Files'))e.preventDefault();});
+  ta.addEventListener('drop',e=>{const fs=[...e.dataTransfer.files].filter(f=>/^image\//.test(f.type));if(fs.length){e.preventDefault();upIns(fs);}});
 
   // pannello SEO
   const p=document.createElement('div');p.className='sx';
@@ -157,8 +271,8 @@ function mount(k){
   let last='';
   setInterval(()=>{const ev=$('c-'+k+'-editor-view');if(!ev||ev.style.display==='none')return;
     const g=f=>($('c-'+k+'-'+f)||{}).value||'';
-    const d={title:g('title'),seot:g('seot'),seod:g('seod'),kw:g('fkw'),md:g('corpo')};
-    const sig=JSON.stringify(d);if(sig===last)return;last=sig;
+    const d={title:g('title'),seot:g('seot'),seod:g('seod'),kw:g('fkw'),md:g('corpo'),foto:g('foto')};
+    const sig=JSON.stringify(d);if(sig===last)return;last=sig;renderFoto(k,d.foto);
     const T=d.seot||d.title, D=d.seod||g('desc');
     $('sx-u-'+k).textContent=location.hostname+' › '+k+' › '+(d.title?norm(d.title).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''):'');
     $('sx-t-'+k).textContent=T.length>60?T.slice(0,59)+'…':(T||'Titolo del servizio');
@@ -169,7 +283,7 @@ function mount(k){
     $('sx-s-'+k).innerHTML=r.seo.map(i=>'<li class="sx-li '+i.s+'">'+esc(i.t)+'</li>').join('');
     $('sx-r-'+k).innerHTML=r.read.map(i=>'<li class="sx-li '+i.s+'">'+esc(i.t)+'</li>').join('');
     $('sx-ds-'+k).className='sx-dot '+level(r.seo);$('sx-dr-'+k).className='sx-dot '+level(r.read);
-    if(pv.style.display==='block')pv.innerHTML=md2html(d.md);
+    if(pv.style.display==='block')pv.innerHTML=md2html(d.md,BASE);
   },500);
 }
 ['servizi','progetti'].forEach(mount);

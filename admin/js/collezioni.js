@@ -57,13 +57,39 @@ window.collShow=function(k,btn){
   collTorna(k);
 };
 window.collCarica=async function(k){
-  const el=$(`c-${k}-lista`);
-  if(!tok()){el.innerHTML='<em style="color:#bbb;font-size:13px">Token mancante.</em>';return;}
-  let res; try{res=await ghGet(C[k].dir);}catch(e){el.innerHTML='<em style="color:#bbb;font-size:13px">Errore di rete.</em>';return;}
-  if(!res.ok){el.innerHTML=`<em style="color:#bbb;font-size:13px">Nessun ${C[k].nome.toLowerCase()} ancora.</em>`;return;}
+  const el=$(`c-${k}-lista`), vuoto=`<em style="color:#646970;font-size:13px">Nessun ${C[k].nome.toLowerCase()} ancora.</em>`;
+  if(!tok()){el.innerHTML='<em style="color:#646970;font-size:13px">Token mancante.</em>';return;}
+  let res; try{res=await ghGet(C[k].dir);}catch(e){el.innerHTML='<em style="color:#646970;font-size:13px">Errore di rete.</em>';return;}
+  if(!res.ok){el.innerHTML=vuoto;return;}
   const files=(await res.json()).filter(f=>f.name.endsWith('.md'));
-  el.innerHTML=files.length?files.map(f=>`<div class="list-row"><span style="font-size:13px">${C[k].icon} ${f.name.replace('.md','')}</span><div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm" onclick="collModifica('${k}','${f.path}')">✏️ Modifica</button><button class="btn btn-danger btn-sm" onclick="collElimina('${k}','${f.path}','${f.sha}')">🗑</button></div></div>`).join(''):`<em style="color:#bbb;font-size:13px">Nessun ${C[k].nome.toLowerCase()} ancora.</em>`;
+  if(!files.length){el.innerHTML=vuoto;return;}
+  el.innerHTML='<em style="color:#646970;font-size:13px">Caricamento...</em>';
+  const base=location.origin+location.pathname.replace(/\/admin\/?.*$/,'/');
+  const rows=await Promise.all(files.map(async f=>{
+    const nome=f.name.replace('.md','');
+    try{
+      const r=await ghGet(f.path), d=await r.json(), raw=dec(d.content).replace(/\r\n/g,'\n');
+      const fm=(raw.match(/^---\n([\s\S]+?)\n---/)||[])[1]||'';
+      const g=n=>{const x=fm.match(new RegExp('^'+n+':[ \\t]*"?(.*?)"?[ \\t]*$','m'));return x?x[1].replace(/\\"/g,'"'):'';};
+      return {f,nome,title:g('title')||nome,foto:g('foto'),ord:parseInt(g(C[k].ord))||99,home:g('in_home')!=='false'};
+    }catch(e){return {f,nome,title:nome,foto:'',ord:99,home:true};}
+  }));
+  rows.sort((a,b)=>a.ord-b.ord||a.title.localeCompare(b.title));
+  const h=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  const L=window.FOTOLIB;
+  el.innerHTML=`<input type="search" class="wp-search" placeholder="Cerca ${C[k].plur.toLowerCase()}" oninput="collFiltra(this)">
+  <table class="wp-list"><thead><tr><th class="wp-th"></th><th>Titolo</th><th>${k==='servizi'?'Ordine':'Importanza'}</th><th>In home</th></tr></thead><tbody>`+
+  rows.map(x=>`<tr data-q="${h((x.title+' '+x.nome).toLowerCase())}"><td class="wp-th"><div>${x.foto&&L?`<img loading="lazy" alt="" src="${L.url(x.foto)}">`:''}</div></td>
+    <td><a class="wp-t" onclick="collModifica('${k}','${x.f.path}')">${h(x.title)}</a>
+    <div class="wp-ra"><a onclick="collModifica('${k}','${x.f.path}')">Modifica</a> | <a class="del" onclick="collElimina('${k}','${x.f.path}','${x.f.sha}')">Elimina</a> | <a href="${base}${k}/${x.nome}/" target="_blank" rel="noopener">Visualizza</a></div></td>
+    <td class="wp-n">${x.ord===99?'–':x.ord}</td><td class="wp-n">${x.home?'Sì':'No'}</td></tr>`).join('')+
+  `</tbody></table><div class="hint" style="margin-top:8px">${rows.length} ${rows.length===1?C[k].nome.toLowerCase():C[k].plur.toLowerCase()}</div>`;
 };
+window.collFiltra=function(inp){
+  const t=inp.value.toLowerCase().trim();
+  inp.parentNode.querySelectorAll('tbody tr').forEach(tr=>{tr.style.display=!t||tr.dataset.q.includes(t)?'':'none';});
+};
+
 window.collTorna=function(k){
   $(`c-${k}-editor-view`).style.display='none'; $(`c-${k}-lista-view`).style.display='block'; collCarica(k);
 };
@@ -73,7 +99,7 @@ function vista(k,titolo){
   showMsg(`c-${k}-msg`,'',''); window.scrollTo({top:0,behavior:'smooth'});
 }
 window.collNuovo=function(k){
-  ['title','ord','desc','seot','seod','faq','corpo'].forEach(f=>$(`c-${k}-${f}`).value=''); $(`c-${k}-home`).value='true'; if($(`c-${k}-fkw`))$(`c-${k}-fkw`).value='';
+  ['title','ord','desc','seot','seod','faq','corpo'].forEach(f=>$(`c-${k}-${f}`).value=''); $(`c-${k}-home`).value='true'; ['fkw','foto','chips'].forEach(x=>{if($(`c-${k}-${x}`))$(`c-${k}-${x}`).value='';});
   st[k].path=null; vista(k,'Nuovo '+C[k].nome.toLowerCase());
 };
 window.collModifica=async function(k,path){
@@ -84,7 +110,7 @@ window.collModifica=async function(k,path){
   $(`c-${k}-title`).value=m.title||''; $(`c-${k}-ord`).value=m[C[k].ord]||'';
   $(`c-${k}-home`).value=m.in_home==='false'?'false':'true';
   $(`c-${k}-desc`).value=m.description||m.excerpt||''; $(`c-${k}-corpo`).value=fm[2].trim();
-  $(`c-${k}-seot`).value=m.seo_title||''; $(`c-${k}-seod`).value=m.seo_description||''; if($(`c-${k}-fkw`))$(`c-${k}-fkw`).value=m.focus_keyword||'';
+  $(`c-${k}-seot`).value=m.seo_title||''; $(`c-${k}-seod`).value=m.seo_description||''; if($(`c-${k}-fkw`))$(`c-${k}-fkw`).value=m.focus_keyword||''; if($(`c-${k}-foto`))$(`c-${k}-foto`).value=m.foto||''; if($(`c-${k}-chips`)){let ch=[];try{ch=JSON.parse(m.chips||'[]');}catch(x){} $(`c-${k}-chips`).value=ch.join(', ');}
   {const fq=[],re=/^[ \t]+-[ \t]+q:[ \t]*"(.*)"[ \t]*\n[ \t]+a:[ \t]*"(.*)"[ \t]*$/gm;let z;while((z=re.exec(fm[1]))){fq.push(z[1].replace(/\\"/g,'"')+' | '+z[2].replace(/\\"/g,'"'));} $(`c-${k}-faq`).value=fq.join('\n');}
   st[k].path=path; vista(k,'Modifica '+C[k].nome.toLowerCase());
 };
@@ -93,17 +119,17 @@ window.collSalva=async function(k){
   if(!tok())return showMsg(msg,'⚠️ Token mancante.','err');
   const titolo=$(`c-${k}-title`).value.trim(); if(!titolo)return showMsg(msg,'⚠️ Titolo obbligatorio.','err');
   const ord=$(`c-${k}-ord`).value.trim()||'99', home=$(`c-${k}-home`).value, desc=$(`c-${k}-desc`).value.trim(), corpo=$(`c-${k}-corpo`).value.trim();
-  const seot=$(`c-${k}-seot`).value.trim(), seod=$(`c-${k}-seod`).value.trim(), faqT=$(`c-${k}-faq`).value, fkw=($(`c-${k}-fkw`)?$(`c-${k}-fkw`).value.trim():'');
+  const seot=$(`c-${k}-seot`).value.trim(), seod=$(`c-${k}-seod`).value.trim(), faqT=$(`c-${k}-faq`).value, fkw=($(`c-${k}-fkw`)?$(`c-${k}-fkw`).value.trim():''), foto=($(`c-${k}-foto`)?$(`c-${k}-foto`).value.trim():''), chips=($(`c-${k}-chips`)?$(`c-${k}-chips`).value.split(',').map(s=>s.trim()).filter(Boolean):[]);
   const path=st[k].path||`${c.dir}/${slug(titolo)}.md`;
   let sha,extra=[];
   if(st[k].path){ // modifica: tengo gli altri campi del frontmatter (date, categories, ecc.)
     const r=await ghGet(path); if(r.ok){const d=await r.json(); sha=d.sha;
       const fm=dec(d.content).replace(/\r\n/g,'\n').match(/^---\n([\s\S]+?)\n---/);
-      if(fm){let inFaq=false;extra=fm[1].split('\n').filter(l=>{if(/^faq:/.test(l)){inFaq=true;return false;} if(inFaq&&/^\s/.test(l))return false; inFaq=false; return !/^(title|description|seo_title|seo_description|focus_keyword|ordine|importance|in_home|layout):/.test(l);});}}
+      if(fm){let inFaq=false;extra=fm[1].split('\n').filter(l=>{if(/^faq:/.test(l)){inFaq=true;return false;} if(inFaq&&/^\s/.test(l))return false; inFaq=false; return !/^(title|description|seo_title|seo_description|focus_keyword|foto|chips|ordine|importance|in_home|layout):/.test(l);});}}
   }
   if(!st[k].path&&k==='servizi')extra=['categories:','  - servizi'];
   const faqL=faqT.split('\n').map(s=>s.trim()).filter(s=>s.includes('|')).map(s=>{const i=s.indexOf('|');return `  - q: "${esc(s.slice(0,i).trim())}"\n    a: "${esc(s.slice(i+1).trim())}"`;});
-  const md=['---','layout: single',`title: "${esc(titolo)}"`,`description: "${esc(desc)}"`,...(seot?[`seo_title: "${esc(seot)}"`]:[]),...(seod?[`seo_description: "${esc(seod)}"`]:[]),...(fkw?[`focus_keyword: "${esc(fkw)}"`]:[]),`${c.ord}: ${ord}`,`in_home: ${home}`,...(faqL.length?['faq:',...faqL]:[]),...extra,'---',corpo,''].join('\n');
+  const md=['---','layout: single',`title: "${esc(titolo)}"`,`description: "${esc(desc)}"`,...(seot?[`seo_title: "${esc(seot)}"`]:[]),...(seod?[`seo_description: "${esc(seod)}"`]:[]),...(fkw?[`focus_keyword: "${esc(fkw)}"`]:[]),...(foto?[`foto: "${esc(foto)}"`]:[]),...(chips.length?[`chips: [${chips.map(x=>`"${esc(x)}"`).join(', ')}]`]:[]),`${c.ord}: ${ord}`,`in_home: ${home}`,...(faqL.length?['faq:',...faqL]:[]),...extra,'---',corpo,''].join('\n');
   showMsg(msg,'⏳ Salvataggio...','');
   const res=await ghPut(path,`${c.nome}: ${titolo}`,md,sha);
   if(res.ok){showMsg(msg,`✅ ${c.nome} salvato!`,'ok');startDeployPolling();st[k].path=path;}
