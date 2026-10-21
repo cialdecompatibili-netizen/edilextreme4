@@ -21,7 +21,7 @@ permalink: /chi-sono/
 
 Ciao, sono Andrew, fondatore di EdilExtreme.
 
-Mi occupo di lavori in quota su doppia fune: grondaie, facciate, tetti e messa in sicurezza, senza montare ponteggi. Lavoro con operatori certificati, formati con istruttori di alpinismo e speleologia, per arrivare dritto al punto del problema anche dove il ponteggio sarebbe lungo e costoso.
+Mi occupo di lavori in quota su doppia fune: grondaie, facciate, tetti e messa in sicurezza, senza montare ponteggi, quindi più rapidi e meno costosi. Lavoro con operatori certificati, formati con istruttori di alpinismo e speleologia, per arrivare dritto al punto del problema anche dove il ponteggio sarebbe lungo e costoso.
 
 Prima di ogni intervento facciamo un sopralluogo gratuito e ti spieghiamo cosa serve davvero, con un preventivo chiaro.
 
