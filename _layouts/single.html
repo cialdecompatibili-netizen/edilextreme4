@@ -52,6 +52,11 @@ layout: default
           </aside>
         {% endif %}
         {{ content }}
+        {%- comment -%} Pagine servizio: FAQ + dati strutturati, poi blocco CTA finale (WhatsApp, telefono, modulo) {%- endcomment -%}
+        {% if page.collection == "servizi" %}
+          {% include servizio-faq.html %}
+          {% include servizio-cta.html %}
+        {% endif %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
