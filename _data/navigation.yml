@@ -3,6 +3,8 @@ main:
     url: /
   - title: "Lavori svolti"
     url: /progetti/
+  - title: "Galleria"
+    url: /galleria/
   - title: "Blog"
     url: /blog/
   - title: "Chi sono"
