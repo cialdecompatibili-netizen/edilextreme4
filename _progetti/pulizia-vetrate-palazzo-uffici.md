@@ -2,6 +2,8 @@
 layout: single
 title: "Pulizia vetrate palazzo uffici"
 description: "Vetrate di un palazzo uffici lavate in quota su fune in un solo giorno."
+foto: "pulizia-vetri-facciata-su-fune-operaio"
+chips: ["Vetrate", "In un giorno", "Senza piattaforme"]
 importance: 3
 in_home: true
 ---

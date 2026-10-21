@@ -2,6 +2,8 @@
 layout: single
 title: "Pulizia grondaie su fune"
 description: "Grondaie e pluviali ostruiti da foglie e detriti, puliti e ripristinati con l'accesso su fune: nessun ponteggio, intervento in giornata."
+foto: "pulizia-gronda-su-fune-scala"
+chips: ["Grondaie", "In giornata", "Senza ponteggio"]
 importance: 1
 in_home: true
 ---
