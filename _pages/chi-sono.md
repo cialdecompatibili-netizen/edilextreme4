@@ -5,10 +5,10 @@ permalink: /chi-sono/
 ---
 
 <style>
-.cs-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:2rem;align-items:start}
-@media(max-width:760px){.cs-wrap{grid-template-columns:1fr;gap:1.2rem}}
+.cs-wrap{max-width:1180px;margin:0 auto}
+.cs-txt{max-width:900px}
 .cs-wrap p{font-size:1.08rem;line-height:1.7}
-.cs-foto{display:block;width:100%;height:auto;margin:0;border-radius:12px}
+.cs-foto{display:block;width:100%;max-width:640px;height:auto;margin:0 0 1.5rem;border-radius:12px}
 .cs-cta{text-align:left;margin-top:2rem}
 .cs-cta a{display:inline-block;margin:.3rem .6rem .3rem 0;padding:.85rem 1.5rem;border-radius:8px;font-weight:700;text-decoration:none}
 .cs-cta .cs-b1{background:var(--t-accent,#3f6b00);color:#fff}
