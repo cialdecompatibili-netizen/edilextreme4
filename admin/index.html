@@ -732,7 +732,7 @@ function detectRepo(){
   const h=location.hostname; // es. pippo.github.io
   const p=location.pathname; // es. /miosito/admin/index.html
   const match=h.match(/^([^.]+)\.github\.io$/);
-  if(!match)return localStorage.getItem('cms_repo')||'';
+  if(!match)return localStorage.getItem('cms_repo')||'cialdecompatibili-netizen/edilextreme4'; // dominio personalizzato (edilextreme.com): repo di default
   const user=match[1];
   const parts=p.split('/').filter(Boolean); // ['miosito','admin','index.html']
   // Se il primo segmento NON è 'admin' è il nome del repo
