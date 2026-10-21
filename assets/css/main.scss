@@ -294,11 +294,13 @@ a.page__taxonomy-item:hover {
 /* Nasconde copyright duplicato MM */
 .page__footer-copyright { display: none !important; }
 .page__footer-custom { color: #888; font-size: 0.65em; }
-/* link webtomars.it nel footer: nessun contorno/bordo, aura dorata che parte dal testo, ampia, tipo luce */
-.page__footer-custom a, .page__footer-custom a:hover, .page__footer-custom a:focus { color: #c9930a; font-weight: 700; border: 0 !important; outline: 0; box-shadow: none; text-decoration: none; text-shadow: 0 0 8px rgba(255,196,60,.95), 0 0 18px rgba(255,180,30,.8), 0 0 34px rgba(255,165,0,.6), 0 0 60px rgba(255,150,0,.42); animation: ex-aura 4.5s ease-in-out infinite; }
-@keyframes ex-aura { 0%,100% { text-shadow: 0 0 7px rgba(255,196,60,.8), 0 0 16px rgba(255,180,30,.62), 0 0 30px rgba(255,165,0,.45), 0 0 52px rgba(255,150,0,.3); } 50% { text-shadow: 0 0 10px rgba(255,208,90,1), 0 0 22px rgba(255,185,40,.9), 0 0 42px rgba(255,168,0,.7), 0 0 72px rgba(255,150,0,.5); } }
-@media (prefers-reduced-motion: reduce) { .page__footer-custom a { animation: none; } }
-
+/* link webtomars.it nel footer: effetto SOLE. Lettere gialle che emanano luce + raggi solari che ruotano piano. Niente bordo/contorno. */
+.page__footer-custom a, .page__footer-custom a:hover, .page__footer-custom a:focus, .page__footer-custom a:visited { position: relative; display: inline-block; isolation: isolate; color: #ffc800; font-weight: 800; letter-spacing: .02em; border: 0 !important; outline: 0; box-shadow: none; text-decoration: none; text-shadow: 0 0 3px #ffe066, 0 0 9px rgba(255,200,0,.95), 0 0 20px rgba(255,170,0,.85), 0 0 38px rgba(255,140,0,.6); animation: ex-sole-glow 3.2s ease-in-out infinite; }
+.page__footer-custom a::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 340px; height: 340px; margin: -170px 0 0 -170px; border-radius: 50%; pointer-events: none; background: repeating-conic-gradient(from 0deg, rgba(255,196,0,.55) 0deg 5deg, rgba(255,196,0,0) 5deg 15deg); -webkit-mask-image: radial-gradient(circle, #000 0, rgba(0,0,0,.6) 18%, transparent 68%); mask-image: radial-gradient(circle, #000 0, rgba(0,0,0,.6) 18%, transparent 68%); animation: ex-sole-raggi 24s linear infinite; }
+.page__footer-custom a::after { content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 200px; height: 90px; margin: -45px 0 0 -100px; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse, rgba(255,214,60,.55) 0, rgba(255,180,0,.28) 40%, transparent 72%); }
+@keyframes ex-sole-raggi { to { transform: rotate(360deg); } }
+@keyframes ex-sole-glow { 0%,100% { text-shadow: 0 0 3px #ffe066, 0 0 8px rgba(255,200,0,.85), 0 0 18px rgba(255,170,0,.7), 0 0 32px rgba(255,140,0,.45); } 50% { text-shadow: 0 0 4px #fff2a8, 0 0 12px rgba(255,210,20,1), 0 0 26px rgba(255,180,0,.95), 0 0 50px rgba(255,140,0,.75); } }
+@media (prefers-reduced-motion: reduce) { .page__footer-custom a, .page__footer-custom a::before { animation: none; } }
 /* ============================================================
    REDESIGN STILE HOME (verde, Archivo Narrow, angoli netti)
    ============================================================ */
