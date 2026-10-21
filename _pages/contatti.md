@@ -28,8 +28,8 @@ permalink: /contatti/
 .cf-wa:hover{filter:brightness(1.06)}
 .cf-wa svg{width:24px;height:24px;fill:currentColor}
 #wa-btn{display:none!important}
-.cf-wrap,.cf-intro{max-width:520px;margin-left:auto;margin-right:auto}
-.cf-intro{text-align:center;margin-bottom:1.5rem}
+.cf-wrap{max-width:520px;margin-left:auto;margin-right:auto}
+.page__content p.cf-intro,p.cf-intro{display:block;width:100%;max-width:none;margin:0 0 1.5rem;text-align:center !important}
 .cf-form{padding:0;border:0;background:none}
 .cf-form .cf-campo{margin:0 0 1.1rem}
 .cf-form label{display:block;width:100%;margin:0 0 .4rem;font-weight:600;text-align:left}
