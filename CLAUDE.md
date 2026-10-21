@@ -30,3 +30,5 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - Dopo il push NON aspettare la build e NON fare controlli live/polling se non richiesti: Mirco verifica da solo e i token sono contati. `pubblica.ps1` di default fa solo pull, commit e push; `-Aspetta` (con `-Url`/`-Cerca`) solo se serve davvero.
 - Spesso Mirco ha un'altra sessione che committa/pusha sulla stessa repo: se `pubblica.ps1` dice "Niente da committare", controllare `git log -3` prima di rifare.
 - Fare le modifiche in una sola chiamata, risposte brevissime.
+## Regola di design (da Mirco, ottobre 2026)
+- MAI bordi laterali colorati (border-left verde oliva o simili) su box, citazioni, avvisi, strisce CTA: sembrano fatti da un'IA. Nessuna barretta colorata a sinistra, mai. Usare box puliti con sfondo leggero o bordo uniforme.
