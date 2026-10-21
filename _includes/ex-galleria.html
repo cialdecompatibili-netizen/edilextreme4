@@ -21,7 +21,6 @@
 <button type="button" data-f="facciate">Facciate e balconi</button>
 <button type="button" data-f="vetri">Vetri</button>
 <button type="button" data-f="verde">Verde e potature</button>
-<button type="button" data-f="team">Il team al lavoro</button>
 </div>
 {%- endif %}
 <div class="exg-g">
@@ -30,7 +29,7 @@
 {%- if include.tutte -%}{%- assign ok = true -%}{%- else -%}{%- for t in temi -%}{%- if f.t contains t -%}{%- assign ok = true -%}{%- break -%}{%- endif -%}{%- endfor -%}{%- endif -%}
 {%- if ok and shown < max or ok and include.tutte -%}
 {%- assign shown = shown | plus: 1 -%}
-<figure class="exg-i" data-t="{{ f.t | join: ' ' }}"><a href="{{ '/assets/foto/' | append: f.f | append: '.jpg' | relative_url }}" data-lb="{{ gr }}" data-cap="{{ f.cap | escape }}" aria-label="Ingrandisci: {{ f.cap | escape }}"><img src="{{ '/assets/foto/t/' | append: f.f | append: '.jpg' | relative_url }}" alt="{{ f.cap | escape }} - EdilExtreme" width="480" height="360" loading="lazy" decoding="async"></a><figcaption>{{ f.cap }}</figcaption>{% if f.team %}<span class="exg-tag">Il team</span>{% endif %}</figure>
+<figure class="exg-i" data-t="{{ f.t | join: ' ' }}"><a href="{{ '/assets/foto/' | append: f.f | append: '.jpg' | relative_url }}" data-lb="{{ gr }}" data-cap="{{ f.cap | escape }}" aria-label="Ingrandisci: {{ f.cap | escape }}"><img src="{{ '/assets/foto/t/' | append: f.f | append: '.jpg' | relative_url }}" alt="{{ f.cap | escape }} - EdilExtreme" width="480" height="360" loading="lazy" decoding="async"></a><figcaption>{{ f.cap }}</figcaption></figure>
 {%- endif -%}
 {%- endfor -%}
 </div>
