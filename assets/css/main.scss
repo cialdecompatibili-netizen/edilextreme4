@@ -218,6 +218,20 @@ a.page__taxonomy-item:hover {
   }
 }
 
+/* 21/10/2026: pagine SENZA sidebar (es. progetti): stessa larghezza del testo degli articoli
+   (colonna 1fr dell'articolo = 100% - 200px sidebar - 2em gap), senza il padding/float del tema. */
+@media (min-width: 64em) {
+  #main:not(:has(> .sidebar)) > article.page {
+    float: none !important;
+    width: calc(100% - 200px - 2em) !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
 /* ============================================================
    YOU MAY ALSO ENJOY
    ============================================================ */
