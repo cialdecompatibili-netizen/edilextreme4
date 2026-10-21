@@ -1,4 +1,5 @@
 ---
+published: false
 layout: single
 title: "Prodotto"
 permalink: /shop/prodotto/

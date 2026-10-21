@@ -51,7 +51,7 @@ timezone:
 
 collections:
   products:
-    output: true
+    output: false
     permalink: /shop/:name/
   servizi:
     output: true
