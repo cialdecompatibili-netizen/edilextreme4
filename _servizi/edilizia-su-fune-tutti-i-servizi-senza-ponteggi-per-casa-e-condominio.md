@@ -4,55 +4,72 @@ ordine: 50
 in_home: false
 title: "Edilizia su fune: tutti i servizi senza ponteggi per casa e condominio"
 date: 2026-09-17
-excerpt: "Impermeabilizzazioni, grondaie, canne fumarie, facciate, tetti e molto altro: la guida completa ai lavori edili su fune, senza ponteggi ne impalcature."
+excerpt: "Impermeabilizzazioni, grondaie, canne fumarie, facciate, tetti e molto altro: la guida completa ai lavori edili su fune, senza ponteggi né impalcature."
+seo_title: "Edilizia su fune: tutti i servizi senza ponteggi per casa e condominio"
+seo_description: "Impermeabilizzazioni, grondaie, canne fumarie, facciate, vetri, fotovoltaico, linee vita e potature: tutti i lavori in quota su fune, senza ponteggio. Sopralluogo gratuito."
 categories:
   - servizi
+faq:
+  - q: "Cosa significa lavorare su fune?"
+    a: "Significa raggiungere il punto da trattare calandosi dall'alto con corde, imbragature e attrezzatura certificata, senza montare ponteggi, impalcature o piattaforme. Si lavora sempre su doppia fune, in sicurezza."
+  - q: "Quanto si risparmia rispetto al ponteggio?"
+    a: "Per interventi mirati si evitano montaggio, noleggio e smontaggio del ponteggio, oltre all'occupazione di suolo. Il risparmio dipende dal lavoro: dopo un sopralluogo gratuito ti diamo un preventivo chiaro e ti diciamo con onestà se la fune conviene."
+  - q: "Quando il ponteggio è meglio?"
+    a: "Per rifacimenti molto estesi, come una facciata o un tetto interi di un grande edificio, il ponteggio può essere più efficiente. La fune dà il meglio su interventi mirati e punti difficili."
+  - q: "Come richiedo un preventivo?"
+    a: "Il modo più veloce è WhatsApp: scrivici cosa c'è da fare e allega 2 o 3 foto. Ti rispondiamo entro 24 ore, festivi esclusi, e se serve fissiamo un sopralluogo gratuito."
 ---
 
-EdilExtreme esegue interventi edili in quota su fune, senza l'utilizzo di ponteggi, impalcature o piattaforme aeree. Questa tecnica, nata dall'esperienza alpinistica e speleologica, permette di raggiungere qualsiasi punto dell'edificio in pochi minuti, con un risparmio concreto su tempi e costi rispetto ai metodi tradizionali.
+EdilExtreme esegue lavori edili **in quota su fune**, senza ponteggi, impalcature o piattaforme aeree. È una tecnica nata dall'esperienza alpinistica e speleologica che permette di raggiungere qualsiasi punto dell'edificio in poco tempo, con meno costi e meno disagi rispetto a un cantiere tradizionale.
 
-Zero permessi comunali per il ponteggio, zero ingombro a terra, zero disagi per condomini e passanti: i nostri operatori si calano dall'alto con corde, imbragature e attrezzatura certificata, intervenendo in totale sicurezza anche nei punti piu difficili da raggiungere.
+Niente ingombro sul marciapiede, niente teli davanti alle finestre, niente balconi inutilizzabili: gli operatori si calano dall'alto con corde, imbragature e attrezzatura certificata, su **doppia fune** (D.Lgs. 81/2008, art. 116).
+
+{% include servizio-cta.html tipo="mini" %}
 
 ## I nostri servizi
 
-## Impermeabilizzazioni e protezione dall'acqua
+### Impermeabilizzazioni e protezione dall'acqua
 
-**[Impermeabilizzazione su fune](#)** — Interventi di impermeabilizzazione di terrazzi, balconi, tetti e cornicioni con guaine bituminose e liquide, per fermare le infiltrazioni prima che danneggino le strutture in profondita.
+- [Impermeabilizzazione su fune]({{ '/servizi/impermeabilizzazione-su-fune/' | relative_url }}): terrazzi, balconi, tetti e cornicioni con guaine e membrane liquide, per fermare le infiltrazioni prima che danneggino le strutture.
+- [Impermeabilizzazione tetti: quando serve davvero]({{ '/servizi/impermeabilizzazione-tetti-su-fune-quando-serve/' | relative_url }}): quando la fune conviene e quando serve il ponteggio.
+- [Riparazione e pulizia grondaie]({{ '/servizi/riparazione-e-pulizia-grondaie/' | relative_url }}): grondaie e pluviali puliti, riparati o sostituiti.
+- [Montaggio isolanti]({{ '/servizi/montaggio-isolanti/' | relative_url }}): isolamento termico di facciate e coperture, senza cantieri invasivi.
 
-**[Riparazione e pulizia grondaie](#)** — Manutenzione e sostituzione di grondaie e pluviali, per evitare che l'acqua accumulata danneggi facciate, cornicioni e murature.
+### Manutenzione e sicurezza in quota
 
-**[Montaggio isolanti](#)** — Applicazione di isolanti termici e acustici su facciate e coperture, per migliorare l'efficienza energetica dell'edificio senza cantieri invasivi.
+- [Canne fumarie]({{ '/servizi/pulizia-manutenzione-e-installazione-canne-fumarie/' | relative_url }}): verifica, pulizia e installazione in quota.
+- [Dissuasori per piccioni]({{ '/servizi/installazione-e-manutenzione-dissuasori-per-piccioni/' | relative_url }}): sistemi anti-volatili su cornicioni, balconi e coperture.
+- [Linee vita e ancoraggi]({{ '/servizi/montaggio-sistemi-di-sicurezza-su-fune/' | relative_url }}): per lavorare in sicurezza sui tetti in futuro.
+- [Messa in sicurezza]({{ '/servizi/rimozione-materiale-pericolante/' | relative_url }}): rimozione di intonaci e cornicioni a rischio caduta.
 
-## Manutenzione e sicurezza in quota
+### Pulizia e cura del verde
 
-**[Pulizia, manutenzione e installazione canne fumarie](#)** — Verifica, pulizia e installazione di canne fumarie in quota, essenziali per il corretto funzionamento di stufe e caminetti.
+- [Potatura alberi]({{ '/servizi/potatura-alberi/' | relative_url }}): alberi alti o in spazi stretti con tree climbing.
+- [Pulizia componenti su fune]({{ '/servizi/pulizia-componenti-su-fune/' | relative_url }}): insegne, cornicioni e altri elementi in quota.
+- [Pulizia pannelli fotovoltaici]({{ '/servizi/pulizia-pannelli-fotovoltaici/' | relative_url }}): per mantenere alta la resa dell'impianto.
+- [Pulizia vetri]({{ '/servizi/pulizia-vetri/' | relative_url }}): vetrate e facciate vetrate di edifici alti.
 
-**[Installazione e manutenzione dissuasori per piccioni](#)** — Sistemi anti-volatili su cornicioni, balconi e coperture, per proteggere facciate e strutture da sporco e danni.
+### Ristrutturazione ed estetica
 
-**[Montaggio sistemi di sicurezza su fune](#)** — Installazione di linee vita e ancoraggi permanenti che permettono interventi futuri in sicurezza, per operatori e manutentori.
+- [Balconi, facciate e tetto]({{ '/servizi/ristrutturazioni-balconi-e-facciate/' | relative_url }}): ripristino di intonaci, frontalini, cornicioni e coperture.
+- [Tinteggiature complete]({{ '/servizi/tinteggiature-complete-su-fune/' | relative_url }}): tinteggiatura esterna senza ponteggio.
 
-**[Rimozione materiale pericolante su fune](#)** — Intervento rapido su intonaci, cornicioni o parti dell'edificio a rischio caduta, per mettere in sicurezza lo stabile in tempi brevi.
+## Perché scegliere l'edilizia su fune
 
-## Pulizia e cura del verde
+- **niente ponteggio**: risparmi su montaggio, noleggio e occupazione di suolo
+- **cantiere più rapido** e meno invasivo
+- **balconi e spazi comuni** restano utilizzabili
+- **un solo accesso** per più lavori
+- operatori formati con **corsi di alpinismo e speleologia**
 
-**[Potatura alberi](#)** — Potatura di alberi ad alto fusto anche in spazi stretti o difficili da raggiungere con mezzi tradizionali.
+## Fune o ponteggio?
 
-**[Pulizia componenti su fune](#)** — Pulizia mirata di elementi tecnici e architettonici in quota, senza montaggio di impalcature.
+La fune dà il meglio su **interventi mirati e punti difficili**. Per rifacimenti molto estesi di grandi edifici il ponteggio può essere più efficiente: se è il tuo caso, ti diciamo con onestà qual è la soluzione migliore.
 
-**[Pulizia pannelli fotovoltaici](#)** — Manutenzione periodica degli impianti fotovoltaici in copertura, per mantenerne inalterata l'efficienza.
+## Per un preventivo veloce, mandaci su WhatsApp
 
-**[Pulizia vetri](#)** — Pulizia di vetrate e infissi di palazzi ed edifici alti, con accesso diretto su fune ai punti piu complessi.
+- 2 o 3 foto del **punto da trattare**
+- il **numero di piani** e il tipo di lavoro
+- il **comune** e se è un condominio, un'azienda o una casa
 
-## Ristrutturazione ed estetica
-
-**[Ristrutturazioni balconi e facciate](#)** — Ripristino di intonaci, cornicioni e facciate degradate, riportando l'edificio al suo stato originario.
-
-**[Tinteggiature complete](#)** — Tinteggiatura esterna completa senza ponteggi ne permessi comunali, con materiali resistenti agli agenti atmosferici.
-
-**[Ristrutturazione tetto](#)** — Interventi su coperture danneggiate, dalla sostituzione di tegole al rifacimento di parti strutturali.
-
-## Perche scegliere l'edilizia su fune
-
-Ogni intervento viene eseguito da personale formato con corsi di alpinismo e speleologia, in totale sicurezza e nel rispetto delle normative vigenti. La tecnica su fune azzera i costi di noleggio ponteggi, riduce drasticamente i tempi di cantiere e non priva i condomini dell'uso di balconi, terrazzi e spazi comuni durante i lavori.
-
-Richiedi un sopralluogo gratuito e senza impegno: valutiamo l'intervento piu adatto alle tue esigenze e ti prepariamo un preventivo trasparente.
+Sopralluogo gratuito e preventivo chiaro, senza impegno.
