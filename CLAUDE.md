@@ -26,3 +26,7 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - Contatti (`_pages/contatti.md`): bottone WhatsApp, numero +39 328 197 0254 (`site.whatsapp` = 393281970254 in `_config.yml`), modulo email con campo telefono facoltativo (finisce in coda al messaggio). Testi centrati.
 - Shop disattivato (pagine con `published: false`, prodotti `output: false`); nel menu c'e' "Chi sono". Per riattivare: togliere `published: false` e rimettere `output: true`.
 - Test visivo: Chrome headless per screenshot; da provare la verifica automatica con Windows-MCP.
+## Regola token/tempo (da Mirco, ottobre 2026)
+- Dopo il push NON aspettare la build e NON fare controlli live/polling se non richiesti: Mirco verifica da solo e i token sono contati. `pubblica.ps1` di default fa solo pull, commit e push; `-Aspetta` (con `-Url`/`-Cerca`) solo se serve davvero.
+- Spesso Mirco ha un'altra sessione che committa/pusha sulla stessa repo: se `pubblica.ps1` dice "Niente da committare", controllare `git log -3` prima di rifare.
+- Fare le modifiche in una sola chiamata, risposte brevissime.
