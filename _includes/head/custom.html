@@ -186,7 +186,8 @@ body { font-size: calc(1rem * var(--t-font-scale)); }
 /* INDICE: box con filo sottile e etichetta "Indice" a pillola (stile webtomars, 15/10/2026).
    Il markup lo genera il JS "INDICE AUTOMATICO" qui sotto (nav.article-auto-toc > p.article-auto-toc__title + ol).
    Vale per blog e servizi (stesso .page__content). Per cambiare colori/bordo toccare solo questo blocco. */
-.article-auto-toc{position:relative;display:table;max-width:100%;min-width:180px;margin:1.8rem 0 2.2rem;padding:1.3rem 1.4rem 1rem;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.article-auto-toc + h2,.article-auto-toc + h3{margin-top:1.1em !important}
+.article-auto-toc{position:relative;display:table;max-width:100%;min-width:180px;margin:1.8rem 0 1.1rem;padding:1.3rem 1.4rem 1rem;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .article-auto-toc__title{position:absolute;top:0;left:1.2rem;transform:translateY(-50%);margin:0;padding:.1rem .8rem;border:1px solid rgba(0,0,0,.12);border-radius:999px;background:#fff;font-size:.85rem;font-weight:700;letter-spacing:.04em;line-height:1.4}
 .article-auto-toc ol{list-style:none;margin:0;padding:0}
 .article-auto-toc li{margin:0;font-size:inherit}
