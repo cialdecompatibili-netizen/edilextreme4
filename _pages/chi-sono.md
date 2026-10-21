@@ -8,6 +8,7 @@ permalink: /chi-sono/
 .cs-wrap{max-width:680px;margin:0 auto}
 .page__title{text-align:center}
 .cs-wrap p{font-size:1.08rem;line-height:1.7}
+.cs-foto{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 1.5rem;border-radius:12px}
 .cs-cta{text-align:center;margin-top:2rem}
 .cs-cta a{display:inline-block;margin:.3rem;padding:.85rem 1.5rem;border-radius:8px;font-weight:700;text-decoration:none}
 .cs-cta .cs-b1{background:var(--t-accent,#3f6b00);color:#fff}
@@ -15,6 +16,8 @@ permalink: /chi-sono/
 </style>
 
 <div class="cs-wrap" markdown="1">
+
+<img class="cs-foto" src="{{ '/assets/images/andrew-imprenditore.jpg' | relative_url }}" alt="Andrew, fondatore di EdilExtreme">
 
 Ciao, sono Andrew, fondatore di EdilExtreme.
 

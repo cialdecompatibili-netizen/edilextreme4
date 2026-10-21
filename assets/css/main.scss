@@ -342,3 +342,5 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .pagination > .pagination--pager{float:none !important;flex:0 0 calc(50% - .375rem);width:auto !important;margin:0 !important;box-sizing:border-box;padding:.7em 1em;border:1px solid var(--ex-line) !important;border-radius:var(--ex-raggio) !important;background:#fff;color:var(--ex-ink);font-weight:600;text-align:center;transition:border-color .15s,color .15s}
 .pagination > .pagination--pager:last-child{margin-left:auto !important}
 .pagination > .pagination--pager:hover{border-color:var(--ex-gd) !important;color:var(--ex-gd);background:#fff}
+
+.author__avatar img{border-radius:50% !important;object-fit:cover;aspect-ratio:1/1}
