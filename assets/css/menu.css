@@ -97,3 +97,6 @@ a.nv__dd-item, a.nv__dd-item:visited, a.nv__dd-item:focus { color: var(--t-nav-t
 a.nv__dd-item:hover, a.nv__dd-item:focus-visible { color: var(--t-accent, #3f6b00); background: #f3f5ee; box-shadow: inset 3px 0 0 #95d600; }
 a.nv__dd-item.active, a.nv__dd-item.active:visited, a.nv__dd-item.active:hover { background: #95d600; color: #15191d; box-shadow: none; }
 @media (max-width: 767.98px) { .nv__link, .nv__item.active > .nv__link { box-shadow: none; } .nv__item.active > .nv__link { border-left: 3px solid #95d600; padding-left: .6rem; } }
+/* logo EX accanto al titolo */
+.nv__brand{display:inline-flex;align-items:center;gap:.6rem}
+.nv__logo{width:34px;height:34px;border-radius:8px;display:block;flex:none}
