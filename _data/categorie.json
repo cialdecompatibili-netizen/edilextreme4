@@ -1,5 +1,9 @@
 [
   {
+    "nome": "guide",
+    "descrizione": "Guide pratiche, consigli e confronti per scegliere i lavori in quota giusti"
+  },
+  {
     "nome": "tecnica",
     "descrizione": "Articoli tecnici, guide e tutorial"
   },

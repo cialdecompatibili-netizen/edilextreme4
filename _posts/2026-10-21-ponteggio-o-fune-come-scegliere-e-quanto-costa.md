@@ -6,7 +6,7 @@ excerpt: "Ponteggio, fune o piattaforma: quando conviene ciascuno, i costi che n
 seo_title: "Ponteggio o fune: quando conviene, costi e cosa dice la legge (guida 2026)"
 seo_description: "Ponteggio, lavori su fune o piattaforma? Confronto onesto, voci di costo, cosa dice il D.Lgs. 81/2008, bonus 2026 e 6 domande per scegliere. Sopralluogo gratuito."
 categories:
-  - servizi
+  - guide
 ---
 
 Hai una grondaia che perde, una facciata da rifare o un cornicione che si sgretola, e ti hanno proposto due strade: **montare il ponteggio** oppure **lavorare su fune**. Chi vende il ponteggio ti dice che la fune è un'avventura. Chi lavora su fune ti dice che il ponteggio è uno spreco. Tutti e due, a volte, hanno ragione.
