@@ -18,3 +18,11 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - I blocchi pricing e cta dicono quasi la stessa cosa uno dopo l'altro.
 
 - Menu: voci principali in _data/navigation.yml, tendine in _data/sottomenu.yml (chiave = title della voce). L'admin > Menu gestisce entrambi (bottone Sottomenu su ogni riga, un solo livello, separatori, riordino); salvando riscrive i due file e conserva il commento in testa a sottomenu.yml.
+
+## Pubblicare e pagine fatte (ottobre 2026)
+- Pubblicare con `..\pubblica.ps1` (vedi `..\claude.md`), sempre con `-Files` espliciti: in questa repo `agentold.md`, `wb.ps1`, `wb2.ps1` risultano modificati e NON vanno committati.
+- Foto: `assets/images/andrew-imprenditore.jpg` (pagina Chi sono) e `assets/images/bio-photo.jpg` (avatar autore, ritaglio quadrato sul viso, reso tondo da CSS in `assets/css/main.scss`). Originale: Downloads\andrew imprenditore.jpg.
+- Autore (colonna destra articoli) in `_config.yml`: `author.home: "/chi-sono/"` porta foto e nome alla pagina Chi sono. Link in `author.links`, in ordine: WhatsApp (priorita'), Email (/contatti/), poi Sito web, Twitter, GitHub, Instagram con `url: "#"` per ora.
+- Contatti (`_pages/contatti.md`): bottone WhatsApp, numero +39 328 197 0254 (`site.whatsapp` = 393281970254 in `_config.yml`), modulo email con campo telefono facoltativo (finisce in coda al messaggio). Testi centrati.
+- Shop disattivato (pagine con `published: false`, prodotti `output: false`); nel menu c'e' "Chi sono". Per riattivare: togliere `published: false` e rimettere `output: true`.
+- Test visivo: Chrome headless per screenshot; da provare la verifica automatica con Windows-MCP.
