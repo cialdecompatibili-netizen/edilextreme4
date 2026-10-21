@@ -127,4 +127,7 @@ tag_archive:
   type: liquid
   path: /tags/
 
-cms_homepage: 
+cms_homepage:
+
+# Numero WhatsApp con prefisso, senza + e senza spazi (es. 393331234567). Vuoto = bottone nascosto
+whatsapp: ""

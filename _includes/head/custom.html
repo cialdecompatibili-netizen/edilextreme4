@@ -99,6 +99,29 @@ body { font-size: calc(1rem * var(--t-font-scale)); }
   color: #bbb;
 }
 
+/* BOTTONE WHATSAPP (sopra il torna su, sempre visibile) */
+#wa-btn {
+  position: fixed;
+  bottom: 82px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  z-index: 9998;
+  transition: background .2s, transform .2s;
+}
+#wa-btn:hover { background: #1ebe5b; transform: scale(1.06); }
+#wa-btn svg { width: 26px; height: 26px; fill: currentColor; }
+@media (max-width: 600px) {
+  #wa-btn { bottom: 68px; right: 16px; width: 42px; height: 42px; }
+  #wa-btn svg { width: 24px; height: 24px; }
+}
 /* BOTTONE TORNA SU */
 #back-to-top-btn {
   position: fixed;
