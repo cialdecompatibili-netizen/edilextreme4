@@ -6,5 +6,5 @@ author_profile: false
 classes: wide
 ---
 
-{% include ex-lista.html coll="servizi" ord="ordine" %}
+{% include ex-lista.html coll="servizi" ord="ordine" vista="riga" cta="Scopri il servizio" %}
 
