@@ -12,6 +12,7 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - La build locale (`bundle exec jekyll build`) non parte su questo PC (manca la gemma github-pages): si controlla dopo il deploy sul sito online.
 
 - Il detector su cartella (`npx impeccable detect .`) NON legge i blocchi di `_data/blocks_home.json`: per controllare la home scansionare l'URL online (`npx impeccable detect --json <url>`) dopo il deploy. In PowerShell 5 il JSON restituito e' un array annidato: scorrerlo con due foreach.
+- Logo (ottobre 2026): sorgente `assets/images/favicon.svg` (E fatta di 4 rect, X di 2 path con soli M/L). Colori attuali: sfondo verde acido #a6f000, E #0f1a00, X rossa #e10600. Per cambiare colori: modificare l'SVG e rigenerare con Python+PIL (disegnare rect e poligoni a 8x e ridurre con LANCZOS) favicon-32/192/512.png, apple-touch-icon.png (180) e favicon.ico (anche quello nella root). Nel menu il logo e' `favicon-192.png`. Non lasciare cartelle di backup dentro il repo (Jekyll le pubblica): sono in Desktop\claudetemp\logo_backup.
 
 ## Da sistemare
 - I pulsanti "Richiedi preventivo" (blocchi pricing e cta) hanno href="#": manca un contatto reale (modulo, mail, telefono o WhatsApp).
