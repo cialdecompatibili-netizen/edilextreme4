@@ -134,7 +134,7 @@ permalink: /contatti/
       return fetch(ENDPOINT, { method: 'POST', body: d })
         .then(function (r) { return r.json(); })
         .then(function (j) {
-          if (j.status === 'ok') { form.reset(); mostra("Ricevuto, grazie! Ti rispondiamo il prima possibile all'email che ci hai lasciato.", true); }
+          if (j.status === 'ok') { try { new Image().src = "https://script.google.com/macros/s/AKfycbzS_BXbhdL5lonAPSMcLF0d0zxBgf4L38mxBrhGMSsKrDKp-vlYMCxuWmcUURnu6Vxn/exec?" + new URLSearchParams({ sito: 'edilextreme', bottone: 'preventivo-inviato', prodotto: 'Preventivo', prezzo: '0', browser: navigator.userAgent.substring(0, 80), device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' }).toString(); } catch (e) {} form.reset(); mostra("Ricevuto, grazie! Ti rispondiamo il prima possibile all'email che ci hai lasciato.", true); }
           else { mostra('Invio non riuscito. Riprova tra poco.', false); }
           prepara(); btn.disabled = false; t0 = Date.now();
         });
