@@ -4,7 +4,7 @@ in_home: false
 title: "Riparazione tetti Rieti e provincia: preventivi"
 citta: "Rieti"
 excerpt: "Rifacimento e manutenzione tetti a Rieti e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Riparazione tetti Rieti e provincia: preventivi | EdilExtreme"
+seo_title: "Riparazione tetti Rieti e provincia: preventivi"
 seo_description: "Rifacimento e manutenzione tetti a Rieti e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

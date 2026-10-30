@@ -4,7 +4,7 @@ in_home: false
 title: "Tinteggiature complete su fune a Latina"
 citta: "Latina"
 excerpt: "Tinteggiature complete di facciate a Latina e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Tinteggiature complete su fune a Latina | EdilExtreme"
+seo_title: "Tinteggiature complete su fune a Latina"
 seo_description: "Tinteggiature complete di facciate a Latina e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

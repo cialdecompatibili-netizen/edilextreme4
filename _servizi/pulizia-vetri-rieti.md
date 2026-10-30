@@ -4,7 +4,7 @@ in_home: false
 title: "Pulizia vetri su fune Rieti e provincia"
 citta: "Rieti"
 excerpt: "Pulizia vetri e vetrate a Rieti e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Pulizia vetri su fune Rieti e provincia | EdilExtreme"
+seo_title: "Pulizia vetri su fune Rieti e provincia"
 seo_description: "Pulizia vetri e vetrate a Rieti e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

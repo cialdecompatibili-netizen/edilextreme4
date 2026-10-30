@@ -4,7 +4,7 @@ in_home: false
 title: "Messa in sicurezza a Roma"
 citta: "Roma"
 excerpt: "Messa in sicurezza e linee vita a Roma e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Messa in sicurezza a Roma | EdilExtreme"
+seo_title: "Messa in sicurezza a Roma"
 seo_description: "Messa in sicurezza e linee vita a Roma e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

@@ -4,7 +4,7 @@ in_home: false
 title: "Impermeabilizzazione su fune a Roma"
 citta: "Roma"
 excerpt: "Impermeabilizzazione di terrazzi, balconi e tetti a Roma e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Impermeabilizzazione su fune a Roma | EdilExtreme"
+seo_title: "Impermeabilizzazione su fune a Roma"
 seo_description: "Impermeabilizzazione di terrazzi, balconi e tetti a Roma e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

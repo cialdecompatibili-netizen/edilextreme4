@@ -4,7 +4,7 @@ in_home: false
 title: "Tinteggiature complete a Roma"
 citta: "Roma"
 excerpt: "Tinteggiature complete di facciate a Roma e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Tinteggiature complete a Roma | EdilExtreme"
+seo_title: "Tinteggiature complete a Roma"
 seo_description: "Tinteggiature complete di facciate a Roma e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

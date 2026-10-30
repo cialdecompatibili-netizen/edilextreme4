@@ -3,7 +3,7 @@ layout: single
 title: "Servizi a Roma e provincia"
 permalink: /servizi/provincia/roma/
 description: "Tutti i servizi su fune a Roma e provincia: pulizia vetri, grondaie, tetti, facciate e altro. Sopralluogo e preventivo gratuito."
-seo_title: "Servizi su fune a Roma e provincia | EdilExtreme"
+seo_title: "Servizi su fune a Roma e provincia"
 seo_description: "Pulizia vetri, grondaie, tetti, facciate, potatura e altri lavori su fune a Roma e provincia, senza ponteggi. Sopralluogo e preventivo gratuito."
 author_profile: false
 classes: wide

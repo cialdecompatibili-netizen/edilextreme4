@@ -4,7 +4,7 @@ in_home: false
 title: "Tinteggiature complete a Viterbo"
 citta: "Viterbo"
 excerpt: "Tinteggiature complete di facciate a Viterbo e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Tinteggiature complete a Viterbo | EdilExtreme"
+seo_title: "Tinteggiature complete a Viterbo"
 seo_description: "Tinteggiature complete di facciate a Viterbo e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

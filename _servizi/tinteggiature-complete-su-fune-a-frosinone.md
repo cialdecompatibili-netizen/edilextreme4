@@ -4,7 +4,7 @@ in_home: false
 title: "Tinteggiature complete su fune a Frosinone"
 citta: "Frosinone"
 excerpt: "Tinteggiature complete di facciate a Frosinone e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Tinteggiature complete su fune a Frosinone | EdilExtreme"
+seo_title: "Tinteggiature complete su fune a Frosinone"
 seo_description: "Tinteggiature complete di facciate a Frosinone e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

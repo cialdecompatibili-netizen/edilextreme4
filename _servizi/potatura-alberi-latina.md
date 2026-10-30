@@ -4,7 +4,7 @@ in_home: false
 title: "Potatura alberi Latina"
 citta: "Latina"
 excerpt: "Potatura alberi su fune a Latina e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Potatura alberi Latina | EdilExtreme"
+seo_title: "Potatura alberi Latina"
 seo_description: "Potatura alberi su fune a Latina e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

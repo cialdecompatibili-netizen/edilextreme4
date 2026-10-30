@@ -4,7 +4,7 @@ in_home: false
 title: "Ristrutturazione e manutenzione tetto Latina"
 citta: "Latina"
 excerpt: "Rifacimento e manutenzione tetti a Latina e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Ristrutturazione e manutenzione tetto Latina | EdilExtreme"
+seo_title: "Ristrutturazione e manutenzione tetto Latina"
 seo_description: "Rifacimento e manutenzione tetti a Latina e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

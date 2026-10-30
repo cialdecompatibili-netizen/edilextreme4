@@ -4,7 +4,7 @@ in_home: false
 title: "Rimozione materiale pericolane su fune a Frosinone"
 citta: "Frosinone"
 excerpt: "Rimozione materiale pericolante a Frosinone e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Rimozione materiale pericolane su fune a Frosinone | EdilExtreme"
+seo_title: "Rimozione materiale pericolane su fune a Frosinone"
 seo_description: "Rimozione materiale pericolante a Frosinone e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

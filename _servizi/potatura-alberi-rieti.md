@@ -4,7 +4,7 @@ in_home: false
 title: "Potatura alberi Rieti"
 citta: "Rieti"
 excerpt: "Potatura alberi su fune a Rieti e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Potatura alberi Rieti | EdilExtreme"
+seo_title: "Potatura alberi Rieti"
 seo_description: "Potatura alberi su fune a Rieti e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

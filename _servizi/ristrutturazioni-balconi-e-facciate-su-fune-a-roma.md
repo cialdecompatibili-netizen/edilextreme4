@@ -4,7 +4,7 @@ in_home: false
 title: "Ristrutturazioni balconi e facciate su fune a Roma"
 citta: "Roma"
 excerpt: "Ristrutturazione balconi e facciate a Roma e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Ristrutturazioni balconi e facciate su fune a Roma | EdilExtreme"
+seo_title: "Ristrutturazioni balconi e facciate su fune a Roma"
 seo_description: "Ristrutturazione balconi e facciate a Roma e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi

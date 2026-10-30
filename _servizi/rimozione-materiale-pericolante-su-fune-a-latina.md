@@ -4,7 +4,7 @@ in_home: false
 title: "Rimozione materiale pericolante su fune a Latina"
 citta: "Latina"
 excerpt: "Rimozione materiale pericolante a Latina e provincia: lavori su fune senza ponteggi, con sopralluogo e preventivo gratuito."
-seo_title: "Rimozione materiale pericolante su fune a Latina | EdilExtreme"
+seo_title: "Rimozione materiale pericolante su fune a Latina"
 seo_description: "Rimozione materiale pericolante a Latina e provincia con lavori su fune, senza ponteggi. Sopralluogo e preventivo gratuito con EdilExtreme."
 categories:
   - servizi
