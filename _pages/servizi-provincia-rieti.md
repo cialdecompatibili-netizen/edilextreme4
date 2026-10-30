@@ -10,17 +10,13 @@ classes: wide
 ---
 
 {%- assign pg = site.servizi | where: "citta", "Rieti" | sort: "title" -%}
-{%- assign vetri = pg | where_exp: "s", "s.slug contains 'pulizia-vetri'" -%}
+{%- assign lista = pg | where_exp: "s", "s.slug contains 'pulizia-vetri'" -%}
+{%- assign resto = "" | split: "" -%}
+{%- for s in pg -%}{%- unless s.slug contains 'pulizia-vetri' -%}{%- assign resto = resto | push: s -%}{%- endunless -%}{%- endfor -%}
+{%- assign lista = lista | concat: resto -%}
 
 Lavoriamo a **Rieti e in tutta la provincia**, su fune e senza ponteggi. Scegli il servizio che ti serve, oppure mandaci su WhatsApp due foto e l'indirizzo: ti diciamo se serve un sopralluogo e ti diamo un preventivo gratuito.
 
-<ul>
-{%- for s in vetri %}
-<li><a href="{{ s.url | relative_url }}">{{ s.title }}</a></li>
-{%- endfor %}
-{%- for s in pg %}{%- unless s.slug contains 'pulizia-vetri' %}
-<li><a href="{{ s.url | relative_url }}">{{ s.title }}</a></li>
-{%- endunless %}{%- endfor %}
-</ul>
+{% include ex-lista.html items=lista vista="riga" cta="Scopri il servizio" %}
 
 [Tutti i servizi]({{ '/servizi/' | relative_url }})
