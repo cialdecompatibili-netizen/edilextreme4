@@ -15,7 +15,7 @@
 {%- capture cards -%}
   {%- for item in elenco -%}
     {%- assign chiave = "|" | append: item.url | append: "|" -%}
-    {%- if item.url == page.url or n >= max_card or item.citta -%}{%- continue -%}{%- endif -%}
+    {%- if item.url == page.url or n >= max_card or item.citta != page.citta -%}{%- continue -%}{%- endif -%}
     {%- if visti contains chiave -%}{%- continue -%}{%- endif -%}
       {%- assign visti = visti | append: item.url | append: "|" -%}
       {%- assign n = n | plus: 1 -%}
@@ -36,7 +36,7 @@
     /* 4 card = griglia 2x2 (il tema di default ne mette 3 per riga e ne lascerebbe 1 sola) */
     @media (min-width:768px){.servizi-correlati .grid__item{width:calc(50% - 1em);margin-left:0;margin-right:1em;float:left}.servizi-correlati .grid__item:nth-child(even){margin-right:0;margin-left:1em}}
   </style>
-  <h2 class="page__related-title">Altri servizi</h2>
+  <h2 class="page__related-title">{% if page.citta %}Altri servizi a {{ page.citta }}{% else %}Altri servizi{% endif %}</h2>{% if page.citta %}<p><a href="{{ '/servizi/provincia/' | append: page.citta | downcase | append: '/' | relative_url }}">Tutti i servizi a {{ page.citta }} e provincia &rarr;</a></p>{% endif %}
   <div class="grid__wrapper">
     {{ cards }}
   </div>
