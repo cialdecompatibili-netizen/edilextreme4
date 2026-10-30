@@ -33,3 +33,13 @@ Sito Jekyll su GitHub Pages: https://cialdecompatibili-netizen.github.io/edilext
 - Fare le modifiche in una sola chiamata, risposte brevissime.
 ## Regola di design (da Mirco, ottobre 2026)
 - MAI bordi laterali colorati (border-left verde oliva o simili) su box, citazioni, avvisi, strisce CTA: sembrano fatti da un'IA. Nessuna barretta colorata a sinistra, mai. Usare box puliti con sfondo leggero o bordo uniforme.
+
+
+## Servizi per provincia/citta (SEO locale) - PRASSI DA SEGUIRE
+
+- Le pagine servizio per citta stanno in `_servizi/` con il campo `citta: "Roma"` (Roma, Viterbo, Rieti, Latina, Frosinone). Lo slug e IMPORTANTE e NON si cambia: Google ha gia indicizzato per esempio `/servizi/pulizia-vetri-roma/` (cerca "pulizia vetri a roma"). Se uno slug cambia, serve un redirect 301.
+- Le pagine `citta` NON compaiono nell'elenco `/servizi/`, nella home e in "Altri servizi": `_pages/servizi.md` e `servizi-correlati.html` le escludono.
+- Per ogni provincia c'e una pagina `/servizi/provincia/<citta>/` (`_pages/servizi-provincia-<citta>.md`) che elenca i servizi di quella provincia, con **pulizia vetri sempre per prima**. Il menu Servizi (`_data/sottomenu.yml`) ha le voci "Servizi a <Citta> e provincia".
+- Si lavora **provincia per provincia**: prima tutti i servizi di Roma, poi Viterbo, Rieti, Latina, Frosinone. Per ogni provincia: pagina elenco + una pagina per servizio con testo diverso (niente testo duplicato tra citta) + link interni al servizio base.
+- Da sviluppare: pagine per i comuni della provincia di Roma (e delle altre), una alla volta, con lo stesso schema `citta: "<Comune>"`, dopo aver deciso il campo `provincia` per raggrupparle.
+- Fonte dei testi: sito vecchio italfuni (`repository\italfuni` e italfuni.it): base di partenza, poi migliorati e adattati al nuovo sito.

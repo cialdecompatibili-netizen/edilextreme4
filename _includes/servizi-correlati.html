@@ -15,7 +15,7 @@
 {%- capture cards -%}
   {%- for item in elenco -%}
     {%- assign chiave = "|" | append: item.url | append: "|" -%}
-    {%- if item.url == page.url or n >= max_card -%}{%- continue -%}{%- endif -%}
+    {%- if item.url == page.url or n >= max_card or item.citta -%}{%- continue -%}{%- endif -%}
     {%- if visti contains chiave -%}{%- continue -%}{%- endif -%}
       {%- assign visti = visti | append: item.url | append: "|" -%}
       {%- assign n = n | plus: 1 -%}
